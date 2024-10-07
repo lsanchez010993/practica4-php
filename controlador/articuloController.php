@@ -70,25 +70,26 @@ function eliminarArticulo($id)
         $_SESSION['mensaje_error'] = "Error al eliminar el artículo.";
     }
 
-    header("Location: ../vista/Esborrar.php");
+    header("Location: ../vista/articles/Esborrar.php");
     exit();
 }
 
 // Función para insertar artículos
-function insertarArticulo()
-{
-
+function insertarArticulo() {
     session_start();
+    require_once '../modelo/conexion.php';
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $titulo = $_POST['titulo'];
         $contenido = $_POST['contenido'];
+        $usuario_id = $_SESSION['usuario_id'];  // Obtener el ID del usuario autenticado
 
         $pdo = connectarBD();
-        $sql = "INSERT INTO articles (titol, cos) VALUES (:titol, :cos)";
+        $sql = "INSERT INTO articles (titol, cos, usuario_id) VALUES (:titol, :cos, :usuario_id)";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':titol', $titulo);
         $stmt->bindParam(':cos', $contenido);
+        $stmt->bindParam(':usuario_id', $usuario_id);
 
         if ($stmt->execute()) {
             $_SESSION['mensaje_exito'] = "Artículo creado correctamente.";
@@ -96,10 +97,11 @@ function insertarArticulo()
             $_SESSION['mensaje_error'] = "Error al crear el artículo.";
         }
 
-        header("Location: ../vista/insertar.php");
+        header("Location: ../vista/articles/insertar.php");
         exit();
     }
 }
+
 // Función para leer artículos
 
 function leerArticulos()

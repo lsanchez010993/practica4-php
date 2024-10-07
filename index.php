@@ -15,9 +15,9 @@ const ARTICULOS_POR_PAGINA = 5;
 
 <body>
     <div class="inicio">
-        <button onclick="location.href= 'vista/insertar.php'">Agregar articulo</button>
-        <button onclick="location.href='vista/Modificar.php'">Modificar articulo</button>
-        <button onclick="location.href='vista/Esborrar.php'">Eliminar articulos</button>
+        <button onclick="location.href= 'vista/articles/insertar.php'">Agregar articulo</button>
+        <button onclick="location.href='vista/articles/Modificar.php'">Modificar articulo</button>
+        <button onclick="location.href='vista/articles/Esborrar.php'">Eliminar articulos</button>
 
     </div>
     <div class="contenidor">
@@ -40,7 +40,7 @@ const ARTICULOS_POR_PAGINA = 5;
                 $articles = limit_articulos_por_pagina($start, ARTICULOS_POR_PAGINA);
 
                 // Mostrar los artículos
-                require_once 'vista/Mostrar.php';
+                require_once 'vista/articles/Mostrar.php';
                 listarArticulos($articles);
 
                 ?>
