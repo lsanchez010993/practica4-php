@@ -1,71 +1,56 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Servidor: 127.0.0.1
--- Tiempo de generación: 25-09-2024 a las 12:37:22
--- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.2.12
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Base de datos: `pt04_luis_sanchez`
---
+-- Crear la base de datos
 DROP DATABASE IF EXISTS `pt04_luis_sanchez`;
 CREATE DATABASE IF NOT EXISTS `pt04_luis_sanchez` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `pt04_luis_sanchez`;
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `articles`
---
-
-CREATE TABLE `articles` (
-  `id` int(11) NOT NULL,
-  `titol` varchar(255) NOT NULL,
-  `cos` text NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- Volcado de datos para la tabla `articles`
--- (Aquí puedes agregar los datos de ejemplo si los tienes)
-
--- Índices para tablas volcadas
-
-CREATE TABLE `usuarios` (
-    `id` INT AUTO_INCREMENT PRIMARY KEY,
-    `nombre_usuario` VARCHAR(50) NOT NULL UNIQUE,
-    `email` VARCHAR(100) NOT NULL UNIQUE,
-    `contraseña` VARCHAR(255) NOT NULL,  -- Asegúrate de almacenar las contraseñas de manera segura (hash)
-    `fecha_registro` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+-- Crear la tabla `usuarios`
+CREATE TABLE IF NOT EXISTS `usuarios` (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_usuario VARCHAR(50) NOT NULL UNIQUE,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    contraseña VARCHAR(255) NOT NULL,  -- Contraseña almacenada de forma segura (hash)
+    fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Índices de la tabla `articles`
-ALTER TABLE `articles`
-  ADD PRIMARY KEY (`id`);
+-- Insertar 5 usuarios
+INSERT INTO `usuarios` (nombre_usuario, email, contraseña) VALUES 
+('usuario1', 'usuario1@example.com', 'password_hash1'),
+('usuario2', 'usuario2@example.com', 'password_hash2'),
+('usuario3', 'usuario3@example.com', 'password_hash3'),
+('usuario4', 'usuario4@example.com', 'password_hash4'),
+('usuario5', 'usuario5@example.com', 'password_hash5');
 
--- AUTO_INCREMENT de las tablas volcadas
+-- Crear la tabla `articles`
+CREATE TABLE IF NOT EXISTS `articles` (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    titol VARCHAR(255) NOT NULL,
+    cos TEXT NOT NULL,
+    usuario_id INT,  -- Clave foránea para relacionar con la tabla usuarios
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+);
 
--- AUTO_INCREMENT de la tabla `articles`
-ALTER TABLE `articles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
--- Relación entre tablas
-ALTER TABLE `articles`
-  ADD COLUMN `usuario_id` INT,
-  ADD CONSTRAINT `fk_usuario_id` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios`(`id`);
+-- Insertar 5 artículos relacionados con los usuarios
+INSERT INTO articles (titol, cos, usuario_id) VALUES 
+('El tigre de Bengala', 'El tigre de Bengala es uno de los felinos más grandes del mundo.', 1),
+('El lobo gris', 'El lobo gris es un mamífero que habita en Norteamérica y Eurasia.', 2),
+('El elefante africano', 'El elefante africano es el animal terrestre más grande del mundo.', 3),
+('El oso polar', 'El oso polar vive en las regiones árticas y está adaptado al frío extremo.', 4),
+('El águila calva', 'El águila calva es un ave rapaz y el símbolo nacional de los Estados Unidos.', 5),
+('El león africano', 'El león africano es conocido como el rey de la selva y es un depredador formidable.', 1),
+('El delfín nariz de botella', 'El delfín nariz de botella es un mamífero marino muy inteligente.', 2),
+('El gorila de montaña', 'El gorila de montaña vive en las selvas africanas y es una especie en peligro.', 3),
+('El rinoceronte blanco', 'El rinoceronte blanco es uno de los animales más grandes y se encuentra en África.', 4),
+('El jaguar', 'El jaguar es el felino más grande de América y tiene una fuerza impresionante.', 5),
+('El pingüino emperador', 'El pingüino emperador vive en la Antártida y es el más grande de todas las especies de pingüinos.', 1),
+('El camello bactriano', 'El camello bactriano tiene dos jorobas y es nativo de las regiones desérticas de Asia.', 2),
+('El puma', 'El puma, también conocido como león de montaña, habita en América del Norte y del Sur.', 3),
+('El zorro ártico', 'El zorro ártico es un animal que vive en las regiones más frías del planeta.', 4),
+('El canguro rojo', 'El canguro rojo es el marsupial más grande y vive en Australia.', 5),
+('El hipopótamo', 'El hipopótamo es un animal semiacuático que vive en los ríos de África.', 1),
+('La ballena azul', 'La ballena azul es el animal más grande que haya existido en la Tierra.', 2),
+('El oso negro americano', 'El oso negro americano es una especie de oso que vive en América del Norte.', 3),
+('El búho nival', 'El búho nival es una especie de ave rapaz que vive en las regiones árticas.', 4),
+('La jirafa', 'La jirafa es el animal terrestre más alto y vive en las sabanas africanas.', 5);
 
 COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
