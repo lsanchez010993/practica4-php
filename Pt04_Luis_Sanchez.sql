@@ -3,18 +3,20 @@ DROP DATABASE IF EXISTS `pt04_luis_sanchez`;
 CREATE DATABASE IF NOT EXISTS `pt04_luis_sanchez` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `pt04_luis_sanchez`;
 
+
+
 -- Crear la tabla `usuarios`
 CREATE TABLE IF NOT EXISTS `usuarios` (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre_usuario VARCHAR(50) NOT NULL UNIQUE,
     email VARCHAR(100) NOT NULL UNIQUE,
-    contraseña VARCHAR(255) NOT NULL,  -- Contraseña almacenada de forma segura (hash)
+    password VARCHAR(255) NOT NULL,  -- Contraseña almacenada de forma segura (hash)
     fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Insertar 5 usuarios
-INSERT INTO `usuarios` (nombre_usuario, email, contraseña) VALUES 
-('usuario1', 'usuario1@example.com', 'password_hash1'),
+INSERT INTO `usuarios` (nombre_usuario, email, password) VALUES 
+('luis', 'usuario1@example.com', '1234'),
 ('usuario2', 'usuario2@example.com', 'password_hash2'),
 ('usuario3', 'usuario3@example.com', 'password_hash3'),
 ('usuario4', 'usuario4@example.com', 'password_hash4'),

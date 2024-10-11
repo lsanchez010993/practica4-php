@@ -6,15 +6,15 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="../controlador/usuarioController.php?action=registrarUsuario" method="POST">
+    <form action="../../controlador/userController.php?action=registrarUsuario" method="POST">
         <label for="nombre_usuario">Nombre de Usuario:</label>
         <input type="text" name="nombre_usuario" required><br>
     
         <label for="email">Email:</label>
         <input type="email" name="email" required><br>
     
-        <label for="contraseña">Contraseña:</label>
-        <input type="password" name="contraseña" required><br>
+        <label for="pass">Contraseña:</label>
+        <input type="password" name="pass" required><br>
     
         <button type="submit">Registrar</button>
     </form>
