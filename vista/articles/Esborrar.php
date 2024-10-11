@@ -40,6 +40,7 @@
 
     if (!empty($articles)) {
         foreach ($articles as $article) {
+        
             echo "<div>";
             echo "<h3>ID: " . htmlspecialchars($article['id']) . " - " . htmlspecialchars($article['titol']) . "</h3>";
             echo "<p>" . htmlspecialchars($article['cos']) . "</p>";

@@ -1,6 +1,6 @@
 <?php
 // He definido una constante para que resulte más facil modificar el numero de artículos que debe mostrarse por página
-const ARTICULOS_POR_PAGINA = 5;
+const ARTICULOS_POR_PAGINA = 5; //Esta opcion se le podria preguntar al usuario. Rollo iconos que muestren 5, 10 15 articulos por pagina
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,9 +16,11 @@ const ARTICULOS_POR_PAGINA = 5;
 <body>
 
     <div class="contenidor">
-        <h1>Articles</h1>
+        <h1>Articles creados por el usuario</h1>
         <section class="articles">
             <ul>
+            <button onclick="location.href='controlador/userController.php?action=cerrarSesion'">Cerrar Sesión</button>
+
                 <?php
             
 
