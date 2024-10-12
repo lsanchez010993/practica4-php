@@ -19,12 +19,16 @@ const ARTICULOS_POR_PAGINA = 5; //Esta opcion se le podria preguntar al usuario.
         <h1>Articles creados por el usuario</h1>
         <section class="articles">
             <ul>
-            <button onclick="location.href='controlador/userController.php?action=cerrarSesion'">Cerrar Sesión</button>
+
+                <button onclick="location.href='controlador/userController.php?action=cerrarSesion'">Cerrar Sesión</button>
 
                 <?php
-            
+                $user_id = $_SESSION['usuario_id'];
+              
+
 
                 // Establecer la página actual
+
                 $pagina = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
                 // Definir el número de artículos por página
@@ -34,7 +38,7 @@ const ARTICULOS_POR_PAGINA = 5; //Esta opcion se le podria preguntar al usuario.
                 $start = ($pagina > 1) ? ($pagina * ARTICULOS_POR_PAGINA) - ARTICULOS_POR_PAGINA : 0;
 
                 require_once 'controlador/articuloController.php';
-                $articles = limit_articulos_por_pagina($start, ARTICULOS_POR_PAGINA);
+                $articles = limit_articulos_por_pagina($start, ARTICULOS_POR_PAGINA, $user_id);
 
                 // Mostrar los artículos
                 require_once 'vista/articles/Mostrar.php';
@@ -47,8 +51,10 @@ const ARTICULOS_POR_PAGINA = 5; //Esta opcion se le podria preguntar al usuario.
         <section class="paginacio">
             <ul>
                 <?php
+           
+              
                 // Consulta para contar el número total de artículos
-                $totalArticles = contarArtiulos();
+                $totalArticles = contar_articulos_user($articles);
 
                 // Calcular el número total de páginas
                 $totalPages = ceil($totalArticles / ARTICULOS_POR_PAGINA);

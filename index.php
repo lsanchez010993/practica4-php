@@ -10,26 +10,33 @@
 </head>
 
 <body>
-<?php
-session_start();
+    <?php
+    session_start();
 
-if (!isset($_SESSION['nombre_usuario'])) {
-    // El usuario no ha iniciado sesión
-    echo '<div class="inicio">';
-    echo '<button onclick="location.href=\'vista/usuaris/inicioSesion.php\'">Iniciar Sesión</button>';
-    echo '<button onclick="location.href=\'vista/usuaris/crearUsuari.php\'">Registrarse</button>';  
-    echo '</div>';
+    if (!isset($_SESSION['nombre_usuario'])) {
+        // El usuario no ha iniciado sesión
+        echo <<<HTML
+        <div class="inicio">
+         <button onclick="location.href='vista/usuaris/inicioSesion.php'">Iniciar Sesión</button>
+         <button onclick="location.href='vista/usuaris/crearUsuari.php'">Registrarse</button>
+         </div> 
+HTML;
+        require_once 'vista/articles/vistaArticulosGeneral.php';
+    } else {
+        echo <<<HTML
+    <div class="inicio">
+    <button onclick="location.href='vista/articles/insertar.php'">Insertar Nuevo Articulo</button>
+    <button onclick="location.href='vista/articles/Modificar.php'">Modificar</button>
+  </div> 
+HTML;
 
-    // Mostrar la vista con artículos generales
-    require_once 'vista/articles/vistaArticulosGeneral.php';
+
     
-} else {
-    // El usuario ha iniciado sesión, mostrar artículos solo del usuario autenticado
-    require_once 'vista/articles/vistaArticulosUsuario.php';
-   
-}
+        // El usuario ha iniciado sesión, mostrar artículos solo del usuario autenticado
+        require_once 'vista/articles/vistaArticulosUsuario.php';
+    }
 
-?>
+    ?>
 
 </body>
 

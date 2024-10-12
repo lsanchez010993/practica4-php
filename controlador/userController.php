@@ -8,34 +8,34 @@ if (isset($_GET['action'])) {
 
     if ($action === 'registrarUsuario') {
         registrarUsuario();
-    } elseif ($action === 'iniciarSesion'){
+    } elseif ($action === 'iniciarSesion') {
         iniciarSesion();
-    }elseif ($_GET['action'] === 'cerrarSesion') {
+    } elseif ($_GET['action'] === 'cerrarSesion') {
         session_start();
         session_unset();
         session_destroy();
         header("Location: ../index.php");
         exit();
     }
-    
 }
 
 
 
-function registrarUsuario() {
+function registrarUsuario()
+{
     require_once '../modelo/conexion.php';
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $nombre_usuario = $_POST['nombre_usuario'];
         $email = $_POST['email'];
-        $password = password_hash($_POST['pass'], PASSWORD_DEFAULT);  
+        $password = password_hash($_POST['pass'], PASSWORD_DEFAULT);
 
         $pdo = connectarBD();
         $sql = "INSERT INTO usuarios (nombre_usuario, email, password) VALUES (:nombre_usuario, :email, :password)";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':nombre_usuario', $nombre_usuario);
         $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':password', $password); 
+        $stmt->bindParam(':password', $password);
 
         if ($stmt->execute()) {
             // Usuario registrado correctamente
@@ -51,10 +51,11 @@ function registrarUsuario() {
 }
 
 
-function iniciarSesion() {
+function iniciarSesion()
+{
     require_once '../modelo/conexion.php';  // Asegúrate de que esta ruta es correcta
 
-    session_start();
+
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $nombre_usuario = $_POST['nombre_usuario'];
@@ -66,9 +67,9 @@ function iniciarSesion() {
         $stmt->bindParam(':nombre_usuario', $nombre_usuario);
         $stmt->execute();
         $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
-        
-   
-     
+
+
+
         // Verificar si se encontró el usuario y si la contraseña es correcta
         if ($usuario && password_verify($password, $usuario['password'])) {
             // Autenticación exitosa
@@ -83,9 +84,4 @@ function iniciarSesion() {
             exit();
         }
     }
-    
 }
-
-
-
-?>

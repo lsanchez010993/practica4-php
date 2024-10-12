@@ -75,7 +75,8 @@ function eliminarArticulo($id)
 }
 
 // Función para insertar artículos
-function insertarArticulo() {
+function insertarArticulo()
+{
     session_start();
     require_once '../modelo/conexion.php';
 
@@ -117,26 +118,51 @@ function leerArticulos()
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function limit_articulos_por_pagina($start, $articlesPerPage)
+function limit_articulos_por_pagina($start, $articlesPerPage, $usuario_id = null)
 {
-	$pdo = connectarBD();
-	$sql = "SELECT * FROM articles LIMIT $start, $articlesPerPage";
-	$stmt = $pdo->prepare($sql);
-	$stmt->execute();
-	$articles = $stmt->fetchAll();
-	return $articles;
+    $pdo = connectarBD();  // Se conecta a la base de datos
+
+    if ($usuario_id !== null) {
+
+        $sql = "SELECT * FROM articles WHERE usuario_id = :usuario_id LIMIT :start, :articlesPerPage";
+        $stmt = $pdo->prepare($sql);
+        // Bind de las variables a los marcadores de posición
+        $stmt->bindParam(':usuario_id', $usuario_id, PDO::PARAM_INT);
+        $stmt->bindParam(':start', $start, PDO::PARAM_INT);
+        $stmt->bindParam(':articlesPerPage', $articlesPerPage, PDO::PARAM_INT);
+    } else {
+        // Prepara la consulta sin usuario_id
+        $sql = "SELECT * FROM articles LIMIT :start, :articlesPerPage";
+        $stmt = $pdo->prepare($sql);
+        // Bind de las variables a los marcadores de posición
+        $stmt->bindParam(':start', $start, PDO::PARAM_INT);
+        $stmt->bindParam(':articlesPerPage', $articlesPerPage, PDO::PARAM_INT);
+    }
+
+    // Ejecuta la consulta y obtiene los resultados
+    $stmt->execute();
+    $articles = $stmt->fetchAll();
+
+    return $articles;
 }
-function contarArtiulos()
+function contar_articulos_user($articulos)
 {
-    $pdo = connectarBD(); 
-    $sql = "SELECT COUNT(id) FROM articles "; 
+    if (is_array($articulos)) {
+        $numero_Articulos = count($articulos);
+        return $numero_Articulos;
+    } else {
+        return 0;
+    }
+}
+function contarArtiulosTotales()
+{
+    $pdo = connectarBD();
+    $sql = "SELECT COUNT(id) FROM articles ";
     $stmt = $pdo->prepare($sql);
-    $stmt->execute(); 
+    $stmt->execute();
 
     $count = $stmt->fetchColumn();
 
-   
+
     return $count;
 }
-
-

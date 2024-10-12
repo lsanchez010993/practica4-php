@@ -20,7 +20,7 @@ const ARTICULOS_POR_PAGINA = 5; //Esta opcion se le podria preguntar al usuario.
         <section class="articles">
             <ul>
                 <?php
-            
+
 
                 // Establecer la página actual
                 $pagina = isset($_GET['page']) ? (int)$_GET['page'] : 1;
@@ -45,8 +45,9 @@ const ARTICULOS_POR_PAGINA = 5; //Esta opcion se le podria preguntar al usuario.
         <section class="paginacio">
             <ul>
                 <?php
+              
                 // Consulta para contar el número total de artículos
-                $totalArticles = contarArtiulos();
+                $totalArticles = contarArtiulosTotales();
 
                 // Calcular el número total de páginas
                 $totalPages = ceil($totalArticles / ARTICULOS_POR_PAGINA);
