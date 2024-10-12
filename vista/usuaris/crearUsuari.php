@@ -17,7 +17,7 @@
 </script>
 </head>
 <body>
-    <form action="../../controlador/userController.php?action=registrarUsuario" method="POST">
+    <form action="../../modelo/userModel.php?action=registrarUsuario" method="POST">
         <label for="nombre_usuario">Nombre de Usuario:</label>
         <input type="text" id="nombre_usuario" name="nombre_usuario" required><br>
     

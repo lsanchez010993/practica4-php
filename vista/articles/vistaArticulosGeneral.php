@@ -31,7 +31,7 @@ const ARTICULOS_POR_PAGINA = 5; //Esta opcion se le podria preguntar al usuario.
                 // Calcular desde qué artículo iniciar
                 $start = ($pagina > 1) ? ($pagina * ARTICULOS_POR_PAGINA) - ARTICULOS_POR_PAGINA : 0;
 
-                require_once 'controlador/articuloController.php';
+                require_once 'modelo/articuloModel.php';
                 $articles = limit_articulos_por_pagina($start, ARTICULOS_POR_PAGINA);
 
                 // Mostrar los artículos

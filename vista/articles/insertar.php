@@ -23,7 +23,7 @@
     }
     ?>
 
-    <form action="../controlador/articuloController.php?action=insertar" method="POST">
+    <form action="../../modelo/articuloModel.php?action=insertar" method="POST">
         <label for="titulo">Títol:</label>
         <input type="text" name="titulo" required><br>
 
@@ -32,7 +32,7 @@
 
         <div class="form-buttons">
             <button type="submit">Inserir Article</button>
-            <button type="button" onclick="location.href='../index.php'">Atrás</button>
+            <button type="button" onclick="location.href='../../index.php'">Atrás</button>
         </div>
     </form>
 

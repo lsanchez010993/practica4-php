@@ -20,11 +20,21 @@ const ARTICULOS_POR_PAGINA = 5; //Esta opcion se le podria preguntar al usuario.
         <section class="articles">
             <ul>
 
-                <button onclick="location.href='controlador/userController.php?action=cerrarSesion'">Cerrar Sesión</button>
+                <button onclick="location.href='modelo/userModel.php?action=cerrarsesion'">Cerrar Sesión</button>
 
                 <?php
+
+                if (isset($_SESSION['mensaje_exito'])) {
+                    echo "<p style='color: green; font-size: 28px;'>" . htmlspecialchars($_SESSION['mensaje_exito']) . "</p>";
+                    unset($_SESSION['mensaje_exito']);
+                }
+
+                if (isset($_SESSION['mensaje_error'])) {
+                    echo "<p style='color: red; font-size: 28px;'>" . htmlspecialchars($_SESSION['mensaje_error']) . "</p>";
+                    unset($_SESSION['mensaje_error']);
+                }
                 $user_id = $_SESSION['usuario_id'];
-              
+
 
 
                 // Establecer la página actual
@@ -37,12 +47,12 @@ const ARTICULOS_POR_PAGINA = 5; //Esta opcion se le podria preguntar al usuario.
                 // Calcular desde qué artículo iniciar
                 $start = ($pagina > 1) ? ($pagina * ARTICULOS_POR_PAGINA) - ARTICULOS_POR_PAGINA : 0;
 
-                require_once 'controlador/articuloController.php';
+                require_once 'modelo/articuloModel.php';
                 $articles = limit_articulos_por_pagina($start, ARTICULOS_POR_PAGINA, $user_id);
 
                 // Mostrar los artículos
                 require_once 'vista/articles/Mostrar.php';
-                listarArticulos($articles);
+                listarArticulos($articles, 'editar');
 
                 ?>
             </ul>
@@ -51,8 +61,8 @@ const ARTICULOS_POR_PAGINA = 5; //Esta opcion se le podria preguntar al usuario.
         <section class="paginacio">
             <ul>
                 <?php
-           
-              
+
+
                 // Consulta para contar el número total de artículos
                 $totalArticles = contar_articulos_user($articles);
 

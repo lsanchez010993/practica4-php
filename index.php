@@ -27,11 +27,12 @@ HTML;
     <div class="inicio">
     <button onclick="location.href='vista/articles/insertar.php'">Insertar Nuevo Articulo</button>
     <button onclick="location.href='vista/articles/Modificar.php'">Modificar</button>
+    <button onclick="location.href='vista/articles/Esborrar.php'">Eliminar</button>
   </div> 
 HTML;
 
 
-    
+
         // El usuario ha iniciado sesión, mostrar artículos solo del usuario autenticado
         require_once 'vista/articles/vistaArticulosUsuario.php';
     }

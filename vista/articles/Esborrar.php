@@ -9,7 +9,7 @@
             return confirm('¿Estás seguro de que quieres eliminar este artículo?');
         }
     </script>
-    <link rel="stylesheet" href="../estils/estils.css">
+    <!-- <link rel="stylesheet" href="../estils/estils.css"> -->
 </head>
 <body>
 <?php
@@ -32,7 +32,7 @@
     <?php
       
 
-    require_once '../controlador/articuloController.php';  
+    require_once '../../modelo/articuloModel.php';  
 
 
     $articles = leerArticulos();
@@ -45,7 +45,7 @@
             echo "<h3>ID: " . htmlspecialchars($article['id']) . " - " . htmlspecialchars($article['titol']) . "</h3>";
             echo "<p>" . htmlspecialchars($article['cos']) . "</p>";
             // Enlace para eliminar el artículo con confirmación
-            echo "<a href='../controlador/articuloController.php?action=eliminar&id=" . $article['id'] . "' onclick='return confirmarEliminacion()'>Esborrar</a>";
+            echo "<a href='../../modelo/articuloModel.php?action=eliminar&id=" . $article['id'] . "' onclick='return confirmarEliminacion()'>Esborrar</a>";
             echo "</div>";
             echo "<hr>";
         }

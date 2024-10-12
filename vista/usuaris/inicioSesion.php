@@ -1,4 +1,4 @@
-<form action="../../controlador/userController.php?action=iniciarSesion" method="POST">
+<form action="../../modelo/userModel.php?action=iniciarSesion" method="POST">
     <label for="nombre_usuario">Nombre de Usuario:</label>
     <input type="text" name="nombre_usuario" required><br>
 
