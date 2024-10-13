@@ -139,6 +139,7 @@ function contar_articulos_user($articulos)
         return 0;
     }
 }
+// Consulta para contar el número total de artículos
 function contarArtiulosTotales()
 {
     $pdo = connectarBD();

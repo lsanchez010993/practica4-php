@@ -12,20 +12,7 @@
     <!-- <link rel="stylesheet" href="../estils/estils.css"> -->
 </head>
 <body>
-<?php
-    session_start(); 
 
-
-    if (isset($_SESSION['mensaje_exito'])) {
-        echo "<p style='color: green; font-size: 28px;'>" . htmlspecialchars($_SESSION['mensaje_exito']) . "</p>";
-        unset($_SESSION['mensaje_exito']);
-    }
-
-    if (isset($_SESSION['mensaje_error'])) {
-        echo "<p style='color: red; font-size: 28px;'>" . htmlspecialchars($_SESSION['mensaje_error']) . "</p>";
-        unset($_SESSION['mensaje_error']); 
-    }
-    ?>
     <h1>Llista d'Articles per Esborrar</h1>
 
     

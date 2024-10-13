@@ -16,7 +16,19 @@
     z-index: 1000;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
 }
+h2 {
+	background-color: #91928e;
+	color: #ffffff;
+	font-family: 'Open Sans Condensed', sans-serif;
 
+	border-radius: 8px;
+	text-align: center;
+	font-size: 1.8em;
+	letter-spacing: 1px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	margin: 5px 0;
+  }
+  
 /* Estilos para los botones */
 .inicio button {
     background-color: #4CAF50;

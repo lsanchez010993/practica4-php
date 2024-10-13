@@ -23,9 +23,11 @@
 HTML;
         require_once 'vista/articles/vistaArticulosGeneral.php';
     } else {
+        $nombre = $_SESSION['nombre_usuario'];
+       
         echo <<<HTML
     <div class="inicio">
-    
+    <h2>Bienvenido: $nombre </h2>;
     <button onclick="location.href='vista/articles/insertar.php'">Insertar Nuevo Articulo</button>
     <button onclick="location.href='modelo/userModel.php?action=cerrarsesion'">Cerrar Sesión</button>
 
