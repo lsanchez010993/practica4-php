@@ -44,8 +44,6 @@ function obtenerArticuloPorId($id) {
 function eliminarArticulo($id)
 {
 
-   
-
     $pdo = connectarBD();
     $sql = "DELETE FROM articles WHERE id = :id";
     $stmt = $pdo->prepare($sql);

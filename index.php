@@ -25,9 +25,10 @@ HTML;
     } else {
         echo <<<HTML
     <div class="inicio">
+    
     <button onclick="location.href='vista/articles/insertar.php'">Insertar Nuevo Articulo</button>
-    <button onclick="location.href='vista/articles/Modificar.php'">Modificar</button>
-    <button onclick="location.href='vista/articles/Esborrar.php'">Eliminar</button>
+    <button onclick="location.href='modelo/userModel.php?action=cerrarsesion'">Cerrar Sesión</button>
+
   </div> 
 HTML;
 

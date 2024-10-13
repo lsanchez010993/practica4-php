@@ -20,7 +20,7 @@ const ARTICULOS_POR_PAGINA = 5; //Esta opcion se le podria preguntar al usuario.
         <section class="articles">
             <ul>
 
-                <button onclick="location.href='modelo/userModel.php?action=cerrarsesion'">Cerrar Sesión</button>
+               
 
                 <?php
 
