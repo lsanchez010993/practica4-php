@@ -63,12 +63,12 @@ function eliminarArticulo($id)
 function insertarArticulo()
 {
   
-    require_once 'conexion.php';
+ 
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $titulo = $_POST['titulo'];
         $contenido = $_POST['contenido'];
-        $usuario_id = $_SESSION['usuario_id'];  // Obtener el ID del usuario autenticado
+        $usuario_id = $_SESSION['usuario_id'];  
 
         $pdo = connectarBD();
         $sql = "INSERT INTO articles (titol, cos, usuario_id) VALUES (:titol, :cos, :usuario_id)";
@@ -130,28 +130,31 @@ function limit_articulos_por_pagina($start, $articlesPerPage, $usuario_id = null
 
     return $articles;
 }
-function contar_articulos_user($articulos)
-{
-    if (is_array($articulos)) {
-        $numero_Articulos = count($articulos);
-        return $numero_Articulos;
-    } else {
-        return 0;
-    }
-}
-// Consulta para contar el número total de artículos
-function contarArtiulosTotales()
+
+function contarArticulos($usuario_id = null)
 {
     $pdo = connectarBD();
-    $sql = "SELECT COUNT(id) FROM articles ";
-    $stmt = $pdo->prepare($sql);
+
+    // Verifica si se proporcionó un usuario_id para contar los artículos de un usuario específico
+    if ($usuario_id) {
+        $sql = "SELECT COUNT(*) FROM articles WHERE usuario_id = :usuario_id";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':usuario_id', $usuario_id, PDO::PARAM_INT); // Asignar valor antes de ejecutar
+    } else {
+        // Si no se proporciona usuario_id, contar todos los artículos
+        $sql = "SELECT COUNT(*) FROM articles";
+        $stmt = $pdo->prepare($sql);
+    }
+
+    // Ejecutar la consulta
     $stmt->execute();
 
+    // Obtener el número de artículos
     $count = $stmt->fetchColumn();
-
 
     return $count;
 }
+
 
 
 

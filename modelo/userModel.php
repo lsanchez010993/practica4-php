@@ -53,7 +53,7 @@ function registrarUsuario()
 
 function iniciarSesion()
 {
-    require_once '../modelo/conexion.php';  // Asegúrate de que esta ruta es correcta
+    require_once '../modelo/conexion.php'; 
 
 
 

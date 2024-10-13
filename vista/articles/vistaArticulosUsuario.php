@@ -64,7 +64,7 @@ const ARTICULOS_POR_PAGINA = 5; //Esta opcion se le podria preguntar al usuario.
 
 
                 // Consulta para contar el número total de artículos
-                $totalArticles = contar_articulos_user($articles);
+                $totalArticles = contarArticulos($user_id);
 
                 // Calcular el número total de páginas
                 $totalPages = ceil($totalArticles / ARTICULOS_POR_PAGINA);

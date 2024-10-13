@@ -6,9 +6,9 @@ if (isset($_GET['action']) && $_GET['action'] === 'modificarArticulo') {
             $titulo = $_POST['titulo'];
             $contenido = $_POST['contenido'];
             
-            // Llamada al modelo para actualizar el artículo
+           
             require_once '../modelo/articuloModel.php';
-            $resultado = actualizarArticulo($id, $titulo, $contenido); // Llamar al modelo
+            $resultado = actualizarArticulo($id, $titulo, $contenido); 
             
             if ($resultado) {
                 $_SESSION['mensaje_exito'] = "Artículo actualizado correctamente.";
