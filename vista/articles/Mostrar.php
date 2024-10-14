@@ -18,10 +18,8 @@ function listarArticulos($articles, $accion = null)
 
     // Verificar si hay artículos
     if (!empty($articles)) {
-        if ($accion == 'editar') {
-
-            echo "<h1>Mis articulos</h1>";
-        } else echo '<h1>Todos los articulos</h1>';
+        if ($accion == 'editar') echo "<h1>Mis articulos</h1>";
+        else echo '<h1>Todos los articulos</h1>';
         foreach ($articles as $article) {
 
             $titulo = htmlspecialchars($article['titol']);
