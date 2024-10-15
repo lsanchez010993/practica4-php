@@ -4,7 +4,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 function iniciarSesion()
 {
-    require_once '../conexion.php';
+
+    require_once '../../modelo/conexion.php';
     require_once "../../controlador/userController.php";
 
    

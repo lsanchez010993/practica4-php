@@ -2,6 +2,7 @@
 
 function verificarPassword($usuario, $password, $nombre_usuario, &$errores)
 {
+
     include "errores/errores.php";
     if ($usuario && password_verify($password, $usuario['password'])) {
         // Autenticación exitosa
@@ -10,11 +11,9 @@ function verificarPassword($usuario, $password, $nombre_usuario, &$errores)
         $_SESSION['nombre_usuario'] = $nombre_usuario;
         return true;
     } else {
-        $error = Errores::ERROR_INICIO_SESION;
-        include '../../vista/usuaris/inicioSesion.form.php';
+        $errores = Errores::ERROR_INICIO_SESION;
+        include  __DIR__ . '../../vista/usuaris/inicioSesion.form.php';
         exit();
         return false;
     }
 }
-
-?>
