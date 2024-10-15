@@ -4,14 +4,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 function registrarUsuario()
 {
-    require_once '../conexion.php';
+    require_once '../../modelo/conexion.php';
     require_once "../../controlador/userController.php";
-    $errores; // Declaramos el array de errores
+   
     $correcto; 
 
     $nombre_usuario = $_POST['nombre_usuario'];
     $email = $_POST['email'];
-    $password = password_hash($_POST['pass'], PASSWORD_DEFAULT);
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
     $pdo = connectarBD();
     $sql = "INSERT INTO usuarios (nombre_usuario, email, password) VALUES (:nombre_usuario, :email, :password)";

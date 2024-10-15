@@ -1,0 +1,75 @@
+/* Estilos generales para el formulario */
+form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+/* Estilo de los labels */
+form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Estilo de los campos de entrada */
+form input[type="text"],
+form input[type="email"],
+form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+/* Estilo de los botones */
+form button[type="submit"],
+form button[type="button"] {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+form button[type="submit"] {
+    background-color: #28a745;
+    color: white;
+}
+
+form button[type="submit"]:hover {
+    background-color: #218838;
+}
+
+form button[type="button"] {
+    background-color: #dc3545;
+    color: white;
+}
+
+form button[type="button"]:hover {
+    background-color: #c82333;
+}
+
+/* Mensaje de éxito */
+.success-message {
+    color: green;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+}
+p {
+    color: green;
+    font-size: 18px;
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+}

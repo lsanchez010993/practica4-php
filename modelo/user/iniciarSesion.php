@@ -7,8 +7,9 @@ function iniciarSesion()
     require_once '../conexion.php';
     require_once "../../controlador/userController.php";
 
-    $errores = array(); // Declaramos el array de errores
-
+   
+    $correcto; 
+    $error;
 
     $nombre_usuario = $_POST['nombre_usuario'];
     $password = $_POST['password'];
