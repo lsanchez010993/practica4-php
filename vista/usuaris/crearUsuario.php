@@ -19,7 +19,9 @@
 </head>
 
 <body>
-    <form action="../../modelo/userModel.php?action=registrarUsuario" method="POST">
+
+
+    <form action="../../modelo/user/registrarUsuario.php" method="POST">
         <label for="nombre_usuario">Nombre de Usuario:</label>
         <input type="text" id="nombre_usuario" name="nombre_usuario" required><br>
 
@@ -33,6 +35,17 @@
         <input type="password" id="confirm_pass" name="confirm_pass" required><br>
 
         <button type="submit">Registrar</button>
+     
+        <button type="button" onclick="location.href='../../index.php'">Atrás</button>
+        <?php
+        if (isset($correcto) && !empty($correcto)) {
+            echo '<p style="color:green;">' . $correcto . '</p>';
+        }
+        if (isset($error) && !empty($error)){
+            echo '<p style="color:green;">' . $error . '</p>';
+
+        }
+        ?>
     </form>
 </body>
 

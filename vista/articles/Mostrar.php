@@ -3,9 +3,7 @@
         return confirm('¿Estás seguro de que quieres eliminar este artículo?');
     }
 
-    function confirmaractualizacion() {
-        return confirm('¿Estás seguro de que quieres actualizar este artículo?');
-    }
+
 </script>
 <?php
 

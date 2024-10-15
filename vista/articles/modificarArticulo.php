@@ -1,3 +1,8 @@
+<script>
+    function confirmaractualizacion() {
+        return confirm('¿Estás seguro de que quieres actualizar este artículo?');
+    }
+</script>
 <?php
 // Conectar a la base de datos y obtener los datos del artículo a modificar
 require_once '../../modelo/conexion.php';
@@ -22,15 +27,18 @@ if (isset($_GET['id'])) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modificar Artículo</title>
 </head>
+
 <body>
     <h1>Modificar Artículo</h1>
 
-    <form action="../../controlador/articuloController.php?action=modificarArticulo&id=<?php echo $id; ?>" method="POST">
+    <form action="../../controlador/articuloController.php?action=modificarArticulo&id=
+    <?php echo $id; ?>" method="POST" onsubmit="return confirmaractualizacion();">
         <label for="titulo">Título:</label>
         <input type="text" name="titulo" value="<?php echo $titulo; ?>" required><br>
 
@@ -40,4 +48,5 @@ if (isset($_GET['id'])) {
         <button type="submit">Actualizar Artículo</button>
     </form>
 </body>
+
 </html>
