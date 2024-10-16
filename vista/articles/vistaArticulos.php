@@ -36,10 +36,10 @@ const ARTICULOS_POR_PAGINA = 5; //Esta opcion se le podria preguntar al usuario.
                     unset($_SESSION['correcto']);
                 }
                 //Si el usuario ha iniciado sesion, guardo el usuario_id en una variable
-                if (isset($_SESSION['usuario_id'])){
+                if (isset($_SESSION['usuario_id'])) {
                     $user_id = $_SESSION['usuario_id'];
                 }
-                
+
 
 
 
@@ -55,15 +55,19 @@ const ARTICULOS_POR_PAGINA = 5; //Esta opcion se le podria preguntar al usuario.
 
                 require_once 'modelo/articuloModel.php';
                 $user_id = isset($_SESSION['usuario_id']) ? $_SESSION['usuario_id'] : null;
-                
-                if (isset($user_id)) {
+
+                if (!isset($user_id) || $user_id != null) {
                     $articles = limit_articulos_por_pagina($start, ARTICULOS_POR_PAGINA);
+                    // Mostrar los artículos
+                    require_once 'vista/articles/Mostrar.php';
+                    listarArticulos($articles);
                 } else {
                     $articles = limit_articulos_por_pagina($start, ARTICULOS_POR_PAGINA, $user_id);
+                   // Mostrar los artículos
+                   require_once 'vista/articles/Mostrar.php';
+                   listarArticulos($articles, 'editar');
                 }
-                // Mostrar los artículos
-                require_once 'vista/articles/Mostrar.php';
-                listarArticulos($articles, 'editar');
+            
 
                 ?>
             </ul>
