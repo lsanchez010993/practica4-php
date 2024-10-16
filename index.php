@@ -25,7 +25,7 @@
          <button onclick="location.href='vista/usuaris/crearUsuario.php'">Registrarse</button>
          </div> 
 HTML;
-        include_once 'vista/articles/vistaArticulosGeneral.php';
+        include_once 'vista/articles/vistaArticulos.php';
     } else {
         $nombre = $_SESSION['nombre_usuario'];
        
@@ -38,7 +38,7 @@ HTML;
   </div> 
 HTML;
         // Si el usuario ha iniciado sesión, mostrar artículos solo del usuario
-        include_once 'vista/articles/vistaArticulosUsuario.php';
+        include_once 'vista/articles/vistaArticulos.php';
     }
     ?>
 </body>

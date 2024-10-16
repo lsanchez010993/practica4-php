@@ -35,7 +35,7 @@ HTML;
                 echo "<a href='modelo/articuloModel.php?action=eliminar&id=" . $article['id'] . "' onclick='return confirmarEliminacion()'>  
                 <img src='./vista/imagenes/iconos/eliminar.png' alt='Eliminar' width='20' height='20'>
           </a>";
-          echo "<a href='./vista/articles/modificarArticulo.php?id=" . $article['id'] . "'>
+          echo "<a href='./vista/articles/modificarArticulo.vista.php?id=" . $article['id'] . "'>
           <img src='./vista/imagenes/iconos/editar.png' alt='Editar' width='20' height='20'>
         </a>";
             }
@@ -46,5 +46,7 @@ HTML;
 HTML;
     }
 }
+
+
 
 ?>

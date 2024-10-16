@@ -16,24 +16,30 @@ const ARTICULOS_POR_PAGINA = 5; //Esta opcion se le podria preguntar al usuario.
 <body>
 
     <div class="contenidor">
-        <h1>Articles creados por el usuario</h1>
+        <br>
+        <br>
+        <br>
+        <br>
+
         <section class="articles">
             <ul>
 
-               
+
 
                 <?php
 
-                if (isset($_SESSION['mensaje_exito'])) {
-                    echo "<p style='color: green; font-size: 28px;'>" . htmlspecialchars($_SESSION['mensaje_exito']) . "</p>";
-                    unset($_SESSION['mensaje_exito']);
-                }
+                if (isset($_SESSION['correcto'])) {
+                    $correcto = $_SESSION['correcto'];
 
-                if (isset($_SESSION['mensaje_error'])) {
-                    echo "<p style='color: red; font-size: 28px;'>" . htmlspecialchars($_SESSION['mensaje_error']) . "</p>";
-                    unset($_SESSION['mensaje_error']);
+                    echo "<h1>" . htmlspecialchars($correcto) . "</h1>";
+
+                    unset($_SESSION['correcto']);
                 }
-                $user_id = $_SESSION['usuario_id'];
+                //Si el usuario ha iniciado sesion, guardo el usuario_id en una variable
+                if (isset($_SESSION['usuario_id'])){
+                    $user_id = $_SESSION['usuario_id'];
+                }
+                
 
 
 
@@ -48,8 +54,13 @@ const ARTICULOS_POR_PAGINA = 5; //Esta opcion se le podria preguntar al usuario.
                 $start = ($pagina > 1) ? ($pagina * ARTICULOS_POR_PAGINA) - ARTICULOS_POR_PAGINA : 0;
 
                 require_once 'modelo/articuloModel.php';
-                $articles = limit_articulos_por_pagina($start, ARTICULOS_POR_PAGINA, $user_id);
-
+                $user_id = isset($_SESSION['usuario_id']) ? $_SESSION['usuario_id'] : null;
+                
+                if (isset($user_id)) {
+                    $articles = limit_articulos_por_pagina($start, ARTICULOS_POR_PAGINA);
+                } else {
+                    $articles = limit_articulos_por_pagina($start, ARTICULOS_POR_PAGINA, $user_id);
+                }
                 // Mostrar los artículos
                 require_once 'vista/articles/Mostrar.php';
                 listarArticulos($articles, 'editar');
