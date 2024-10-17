@@ -1,9 +1,17 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nombre_usuario = $_POST['nombre_usuario'];
-    usuarioRepetido($nombre_usuario);
-    // Comprobar si el usuario ya existe
+    $usuario = trim(strtolower($_POST['nombre_usuario'])); // Normalizamos el nombre de usuario
+    $existe = usuarioRepetido($usuario);
     
+    // Comprobar si el usuario ya existe
+    if ($existe) {
+      
+        echo "El usuario ya existe.";
+       
+    } else {
+        echo "El usuario está disponible.";
+       
+    }
 }
 
 function usuarioRepetido($usuario) {
@@ -12,7 +20,7 @@ function usuarioRepetido($usuario) {
     $pdo = connectarBD();
     
     // Consulta para verificar si el usuario ya existe
-    $sql = "SELECT COUNT(*) FROM usuarios WHERE nombre_usuario = :nombre_usuario";
+    $sql = "SELECT COUNT(*) FROM usuarios WHERE LOWER(nombre_usuario) = :nombre_usuario";
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':nombre_usuario', $usuario);
     $stmt->execute();
@@ -21,9 +29,6 @@ function usuarioRepetido($usuario) {
     $count = $stmt->fetchColumn();
 
     // Si hay más de 0 coincidencias, el usuario ya existe
-    if ($count > 0) {
-        return true;
-    } else {
-        return false;
-    }
+    return $count > 0;
 }
+?>

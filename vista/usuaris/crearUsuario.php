@@ -29,7 +29,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if ($userDuplicado === false) {
         // Si el usuario no está duplicado, continuamos con la validación de la contraseña
-
         require_once "../../controlador/userController/validarPassword.php";
         $resultado = comprobarPassword($password, $confirm_password);
 
@@ -46,6 +45,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             // Si la contraseña no es válida, mostramos el mensaje de error
             $errores = $resultado;
         }
+    } else {
+        // Si el usuario ya existe, no debemos continuar con el registro y mostramos el error
+        $errores = $userDuplicado;
     }
 }
 ?>
@@ -71,14 +73,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     <?php
     // Mostrar mensajes de error o éxito
-    if (!empty($userDuplicado)) {
-        echo '<p class="error">' . $userDuplicado . '</p>';
-    }
-    if (!empty($correcto)) {
-        echo '<p class="correcto">' . $correcto . '</p>';
-    }
     if (!empty($errores)) {
         echo '<p class="error">' . htmlspecialchars($errores) . '</p>';
+    } elseif (!empty($correcto)) {
+        echo '<p class="correcto">' . htmlspecialchars($correcto) . '</p>';
     }
     ?>
     
