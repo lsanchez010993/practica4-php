@@ -5,7 +5,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 function registrarUsuario()
 {
     require_once '../../modelo/conexion.php';
-    require_once "../../controlador/userController.php";
+    
    
     $correcto; 
 

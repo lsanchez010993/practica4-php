@@ -1,5 +1,12 @@
 <?php
-function comprobarPassword($password) {
+function comprobarPassword($password,$password2 = null) {
+
+    if ($password2!==null){
+        if ($password !== $password2){
+            return "Las contraseñas no coinciden.";
+        }
+    }
+   
     // Comprobar si la contraseña está definida y no está vacía
     if (!isset($password) || empty($password)) {
         return "La contraseña no puede estar vacía.";

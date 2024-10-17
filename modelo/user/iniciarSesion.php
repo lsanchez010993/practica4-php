@@ -6,7 +6,7 @@ function iniciarSesion()
 {
 
     require_once '../../modelo/conexion.php';
-    require_once "../../controlador/userController/validarPassword.php";
+   
     require_once "../../controlador/errores/errores.php";
     $errores = "";
 

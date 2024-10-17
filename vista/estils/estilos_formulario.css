@@ -66,8 +66,15 @@ form button[type="button"]:hover {
     text-align: center;
     margin-top: 20px;
 }
-p {
+.correcto {
     color: green;
+    font-size: 18px;
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+}
+.error {
+    color: red;
     font-size: 18px;
     text-align: center;
     margin-top: 20px;
