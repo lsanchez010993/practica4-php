@@ -8,26 +8,23 @@
 </head>
 
 <?php
-
-
-// Comprobación del envío del formulario
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    // Obtenemos los valores del formulario
-    $nombre_usuario = $_POST['nombre_usuario'];
+   
+    // $nombre_usuario = $_POST['nombre_usuario'];
     $password = $_POST['password'];
 
     // Validación de la contraseña
     require_once "../../controlador/userController/validarPassword.php";
     $resultado = comprobarPassword($password);
-  
+   
 
     if ($resultado === true) {
         include '../../modelo/user/iniciarSesion.php';
-        // Si la contraseña es válida, intentamos iniciar sesión
+        //  iniciar sesión si la contraseña es válida
         $errores = iniciarSesion();
     } else {
-        // Si la contraseña no es válida, mostramos el mensaje de error
-        $errores = $resultado;
+        // Si la contraseña no es válida, mensaje de error
+        $errores = [ErroresPassword::CONTRASEÑA_INCORRECTA];
     }
 }
 ?>
@@ -47,13 +44,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <?php
         // Mostrar errores si existen
         if (!empty($errores)) {
-            var_dump($errores);
+
             foreach ($errores as $error) {
                 if (strpos($error, '!') !== false)  echo '<p class="correcto">' . htmlspecialchars($error) . '</p>';
                 else echo '<p class="error">' . htmlspecialchars($error) . '</p>';
             }
         }
-    
+
         ?>
     </form>
 
