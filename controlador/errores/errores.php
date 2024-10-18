@@ -16,6 +16,11 @@ class ErroresPassword {
     const CONTRASEÑA_SIN_MINUSCULA = "La contraseña debe contener al menos una letra minúscula.";
     const CONTRASEÑA_SIN_MAYUSCULA = "La contraseña debe contener al menos una letra mayúscula.";
 }
+class Mensajes{
+    
+    const MENSAJE_EXITO_CREAR_USUARIO = '¡Usuario registrado con éxito!';
+    const MENSAJE_ACTUALIZACION_CORRECTA = 'El articulo ha sido modificado correctamente';
+}
 
 
 

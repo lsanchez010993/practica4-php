@@ -29,7 +29,7 @@ function validarDatosNewUser($nombre_usuario, $email, $password, $confirm_passwo
 
             // Si la contraseña es válida y coincide, intentamos registrar al usuario
             require_once '../../modelo/user/registrarUsuario.php';
-            include_once '../../controlador/mensajes/mensajes.php';
+            include_once '../../controlador/errores/errores.php';
             if (registrarUsuario($nombre_usuario, $email, $password)) {
                 $correcto []= Mensajes::MENSAJE_EXITO_CREAR_USUARIO;
                

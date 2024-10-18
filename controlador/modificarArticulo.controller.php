@@ -8,7 +8,7 @@ if (isset($_GET['id'])) {
         $errores = array();
         $correcto;
         include '../controlador/errores/errores.php';
-        include '../controlador/mensajes/mensajes.php';
+       
         if (empty($contenido)) {
             $errores[] = Errores::ERROR_CUERPO_MENSAJE_VACIO;
         }
