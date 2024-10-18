@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <?php
         // Mostrar errores si existen
         if (!empty($errores)) {
-      
+            var_dump($errores);
             foreach ($errores as $error) {
                 if (strpos($error, '!') !== false)  echo '<p class="correcto">' . htmlspecialchars($error) . '</p>';
                 else echo '<p class="error">' . htmlspecialchars($error) . '</p>';

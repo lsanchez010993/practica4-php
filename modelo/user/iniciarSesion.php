@@ -29,7 +29,7 @@ function iniciarSesion()
         exit();
     } else {
         // Si hay errores, incluimos el formulario y los errores estarán disponibles
-        $errores = Errores::ERROR_INICIO_SESION;
+        $errores = [Errores::ERROR_INICIO_SESION];
         return $errores;
         require_once '../../vista/usuaris/inicioSesion.form.php';
        

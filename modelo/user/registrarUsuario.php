@@ -16,9 +16,9 @@ function registrarUsuario($nombre_usuario, $email, $password)
         $stmt->bindParam(':password', $hashedPassword);
 
         if ($stmt->execute()) {
-            return "Usuario registrado con éxito.";
+            return true;
         } else {
-            return "Error al registrar el usuario.";
+            return false;
         }
     } catch (PDOException $e) {
         // Manejo de excepciones de PDO

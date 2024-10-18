@@ -3,7 +3,7 @@
 function comprobarPassword($password, $password2 = null) {
     include_once '../../controlador/errores/errores.php';
     // Array para acumular los errores
-    $errores = [ErroresPassword::CONTRASEÑA_INCORRECTA]; 
+    $errores = []; 
 
     // Comprobar si las contraseñas coinciden
     if ($password2 !== null && $password !== $password2) {

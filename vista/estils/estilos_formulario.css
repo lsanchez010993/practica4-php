@@ -34,9 +34,9 @@ label {
 }
 
 input[type="text"],
-input[type="password"], 
-form input[type="email"]{
-    
+input[type="password"],
+form input[type="email"] {
+
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
@@ -73,4 +73,12 @@ button:hover {
 
 button[type="button"]:hover {
     opacity: 0.9;
+}
+
+.error {
+    color: red;
+}
+
+.correcto {
+    color: green;
 }

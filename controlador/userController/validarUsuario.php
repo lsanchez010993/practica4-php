@@ -4,7 +4,8 @@ function comprobarUsuarioRepe($usuario)
 {
     require_once "../../modelo/user/comprobarUsuario.php";
     if (usuarioRepetido($usuario)) {
-        return ["El nombre de usuario ya está en uso."];
+        include_once '../../controlador/errores/errores.php';
+        return [Errores::ERROR_USUARIO_REPETIDO];
     } else {
 
         return false;
@@ -28,8 +29,10 @@ function validarDatosNewUser($nombre_usuario, $email, $password, $confirm_passwo
 
             // Si la contraseña es válida y coincide, intentamos registrar al usuario
             require_once '../../modelo/user/registrarUsuario.php';
+            include_once '../../controlador/mensajes/mensajes.php';
             if (registrarUsuario($nombre_usuario, $email, $password)) {
-                $correcto []= "!Usuario registrado con éxito¡";
+                $correcto []= Mensajes::MENSAJE_EXITO_CREAR_USUARIO;
+               
             }
         } else {
             // Si la contraseña no es válida, mostramos el mensaje de error
