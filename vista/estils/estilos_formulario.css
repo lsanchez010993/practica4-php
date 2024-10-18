@@ -1,82 +1,76 @@
-/* Estilos generales para el formulario */
-form {
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+/* Estilos generales */
+body {
     font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    flex-direction: column;
 }
 
-/* Estilo de los labels */
-form label {
+/* Estilo del contenedor de formulario */
+form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+/* Título del formulario */
+h1 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Etiquetas y campos de entrada */
+label {
     display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: #333;
+    font-size: 14px;
+    margin-bottom: 5px;
 }
 
-/* Estilo de los campos de entrada */
-form input[type="text"],
-form input[type="email"],
-form input[type="password"] {
+input[type="text"],
+input[type="password"], 
+form input[type="email"]{
+    
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    font-size: 16px;
     box-sizing: border-box;
+    font-size: 14px;
 }
 
 /* Estilo de los botones */
-form button[type="submit"],
-form button[type="button"] {
-    padding: 10px 20px;
-    font-size: 16px;
+button {
+    width: 100%;
+    padding: 10px;
     border: none;
     border-radius: 4px;
+    font-size: 16px;
     cursor: pointer;
-    margin-right: 10px;
+    margin-top: 10px;
 }
 
-form button[type="submit"] {
+button[type="submit"] {
     background-color: #28a745;
     color: white;
 }
 
-form button[type="submit"]:hover {
-    background-color: #218838;
-}
-
-form button[type="button"] {
+button[type="button"] {
     background-color: #dc3545;
     color: white;
 }
 
-form button[type="button"]:hover {
-    background-color: #c82333;
+button:hover {
+    opacity: 0.9;
 }
 
-/* Mensaje de éxito */
-.success-message {
-    color: green;
-    font-weight: bold;
-    text-align: center;
-    margin-top: 20px;
-}
-.correcto {
-    color: green;
-    font-size: 18px;
-    text-align: center;
-    margin-top: 20px;
-    font-weight: bold;
-}
-.error {
-    color: red;
-    font-size: 18px;
-    text-align: center;
-    margin-top: 20px;
-    font-weight: bold;
+button[type="button"]:hover {
+    opacity: 0.9;
 }

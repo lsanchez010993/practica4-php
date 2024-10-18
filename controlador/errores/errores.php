@@ -4,7 +4,20 @@ class Errores{
     const ERROR_CREAR_USUARIO = 'Error al registrar el usuario.';
     const ERROR_CUERPO_MENSAJE_VACIO = 'El cuerpo del mensaje no puede estar vacio.';
     const ERROR_CAMPO_TITULO_VACIO = 'El titulo no puede estar vacio.';
+
 }
+class ErroresPassword {
+    const CONTRASEÑA_INCORRECTA = "Contrasela es incorrecta.";
+    const CONTRASEÑAS_NO_COINCIDEN = "Las contraseñas no coinciden.";
+    const CONTRASEÑA_VACIA = "La contraseña no puede estar vacía.";
+    const CONTRASEÑA_CORTA = "La contraseña debe tener al menos 8 caracteres.";
+    const CONTRASEÑA_SIN_NUMERO = "La contraseña debe contener al menos un número.";
+    const CONTRASEÑA_SIN_MINUSCULA = "La contraseña debe contener al menos una letra minúscula.";
+    const CONTRASEÑA_SIN_MAYUSCULA = "La contraseña debe contener al menos una letra mayúscula.";
+}
+
+
+
 
 
 ?>

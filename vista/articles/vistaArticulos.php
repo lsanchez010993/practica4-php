@@ -54,20 +54,22 @@ const ARTICULOS_POR_PAGINA = 5; //Esta opcion se le podria preguntar al usuario.
                 $start = ($pagina > 1) ? ($pagina * ARTICULOS_POR_PAGINA) - ARTICULOS_POR_PAGINA : 0;
 
                 require_once 'modelo/articuloModel.php';
+                //compruebo si el usuario ha iniciado sesion. Si la ha iniciado guardo su user_id.
                 $user_id = isset($_SESSION['usuario_id']) ? $_SESSION['usuario_id'] : null;
 
-                if (!isset($user_id) || $user_id != null) {
+                
+                if (isset($user_id) && $user_id != null) {
+                    $articles = limit_articulos_por_pagina($start, ARTICULOS_POR_PAGINA, $user_id);
+                    // Mostrar los artículos del usuario
+                    require_once 'vista/articles/Mostrar.php';
+                    listarArticulos($articles, 'editar');
+                } else {
                     $articles = limit_articulos_por_pagina($start, ARTICULOS_POR_PAGINA);
-                    // Mostrar los artículos
+                    // Mostrar todos los artículos
                     require_once 'vista/articles/Mostrar.php';
                     listarArticulos($articles);
-                } else {
-                    $articles = limit_articulos_por_pagina($start, ARTICULOS_POR_PAGINA, $user_id);
-                   // Mostrar los artículos
-                   require_once 'vista/articles/Mostrar.php';
-                   listarArticulos($articles, 'editar');
                 }
-            
+
 
                 ?>
             </ul>

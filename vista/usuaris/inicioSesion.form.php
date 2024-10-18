@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Inicio de Sesión</title>
-    <link rel="stylesheet" href="../estils/estilos_login.css">
+    <link rel="stylesheet" href="../estils/estilos_formulario.css">
 </head>
 
 <?php
@@ -33,6 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 ?>
 
 <body>
+    <h1>Inicio de sesion</h1>
     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
         <label for="nombre_usuario">Nombre de Usuario:</label>
         <input type="text" name="nombre_usuario" required><br>
@@ -45,9 +46,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         <?php
         // Mostrar errores si existen
-        if (isset($errores) && !empty($errores)) {
-            echo '<p>' . htmlspecialchars($errores) . '</p>';
+        if (!empty($errores)) {
+      
+            foreach ($errores as $error) {
+                if (strpos($error, '!') !== false)  echo '<p class="correcto">' . htmlspecialchars($error) . '</p>';
+                else echo '<p class="error">' . htmlspecialchars($error) . '</p>';
+            }
         }
+    
         ?>
     </form>
 

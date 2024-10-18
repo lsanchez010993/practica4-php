@@ -9,11 +9,7 @@
 </head>
 
 <?php
-// Inicialización de variables
-$userDuplicado = "";
 $errores = "";
-$correcto = "";
-
 // Procesar el formulario si se ha enviado
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
@@ -22,38 +18,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
-
-    // Validación de si el usuario está duplicado
-    require_once "../../controlador/userController/validarUsuario.php";
-    $userDuplicado = comprobarUsuarioRepe($nombre_usuario);
-
-    if ($userDuplicado === false) {
-        // Si el usuario no está duplicado, continuamos con la validación de la contraseña
-        require_once "../../controlador/userController/validarPassword.php";
-        $resultado = comprobarPassword($password, $confirm_password);
-
-        if ($resultado === true) {
-            // Validamos que las contraseñas coincidan
-            if ($password === $confirm_password) {
-                // Si la contraseña es válida y coincide, intentamos registrar al usuario
-                require_once '../../modelo/user/registrarUsuario.php';
-                $correcto = registrarUsuario($nombre_usuario, $email, $password);
-            } else {
-                $errores = "Las contraseñas no coinciden.";
-            }
-        } else {
-            // Si la contraseña no es válida, mostramos el mensaje de error
-            $errores = $resultado;
-        }
-    } else {
-        // Si el usuario ya existe, no debemos continuar con el registro y mostramos el error
-        $errores = $userDuplicado;
-    }
+    require_once '../../controlador/userController/validarUsuario.php';
+    //Llamar a la funcion para validar datos:
+    $errores = validarDatosNewUser($nombre_usuario, $email, $password, $confirm_password);
 }
 ?>
 
 <body>
-
+    <h1>Crear nuevo usuario</h1>
     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
         <label for="nombre_usuario">Nombre de Usuario:</label>
         <input type="text" name="nombre_usuario" required><br>
@@ -72,14 +44,28 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     </form>
 
     <?php
-    // Mostrar mensajes de error o éxito
+
     if (!empty($errores)) {
-        echo '<p class="error">' . htmlspecialchars($errores) . '</p>';
-    } elseif (!empty($correcto)) {
-        echo '<p class="correcto">' . htmlspecialchars($correcto) . '</p>';
+      
+        foreach ($errores as $error) {
+            if (strpos($error, '!') !== false)  echo '<p class="correcto">' . htmlspecialchars($error) . '</p>';
+            else echo '<p class="error">' . htmlspecialchars($error) . '</p>';
+        }
     }
+
+    // Mostrar mensajes de error o éxito
+    // if (strpos($errores, '!') !== false) {
+    //     if (!empty($errores)) {
+    //         echo '<p class="correcto">' . htmlspecialchars($errores) . '</p>';
+    //     }
+    // } else {
+    //     if (!empty($errores)) {
+    //         echo '<p class="error">' . htmlspecialchars($errores) . '</p>';
+    //     }
+    // }
+
     ?>
-    
+
 </body>
 
 </html>

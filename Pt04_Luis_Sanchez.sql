@@ -92,14 +92,14 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nombre_usuario`, `email`, `password`, `fecha_registro`) VALUES
-(1, 'luis', 'usuario1@example.com', '$2y$10$XhoSE.pG/E3QZ5Gu5Wf1Meq3Zx/mTR8Z63BU.q/AXKoIEdJYnoYTm', '2024-10-11 07:55:05'),
-(2, 'paco', 'usuario2@example.com', '$2y$10$bNH3wqWFSTb2s9fcTItbMu5BkgBnBkEE/P1Zkvpd16C/psdoxBiL6', '2024-10-11 07:55:05'),
-(3, 'pepe', 'usuario3@example.com', '$2y$10$bNH3wqWFSTb2s9fcTItbMu5BkgBnBkEE/P1Zkvpd16C/psdoxBiL6', '2024-10-11 07:55:05'),
-(4, 'paca', 'usuario4@example.com', '$2y$10$bNH3wqWFSTb2s9fcTItbMu5BkgBnBkEE/P1Zkvpd16C/psdoxBiL6', '2024-10-11 07:55:05'),
-(5, 'lala', 'lala@la.com', '$2y$10$bNH3wqWFSTb2s9fcTItbMu5BkgBnBkEE/P1Zkvpd16C/psdoxBiL6', '2024-10-11 07:55:05'),
-(7, '1234', '1234@1234.com', '$2y$10$XhoSE.pG/E3QZ5Gu5Wf1Meq3Zx/mTR8Z63BU.q/AXKoIEdJYnoYTm', '2024-10-11 20:34:21'),
-(8, 'dfg', 'dsf@gf.fs', '$2y$10$gQHzjZNDmm7uhRZYvxFsPuf6V4qwffkEJa9DtgsK0KbRTiAwcR.eC', '2024-10-12 13:43:10'),
-(10, 'pedro', 'dsf@gf.fss', '$2y$10$bNH3wqWFSTb2s9fcTItbMu5BkgBnBkEE/P1Zkvpd16C/psdoxBiL6', '2024-10-12 13:43:57');
+(1, 'luis', 'usuario1@example.com', '$2y$10$ouqONxD/UE.YV3twy/yVYudLM/PpdyeWWFDFbZ7sH1n3R/cEPTdhO', '2024-10-11 07:55:05'),
+(2, 'paco', 'usuario2@example.com', '$2y$10$ouqONxD/UE.YV3twy/yVYudLM/PpdyeWWFDFbZ7sH1n3R/cEPTdhO', '2024-10-11 07:55:05'),
+(3, 'pepe', 'usuario3@example.com', '$2y$10$ouqONxD/UE.YV3twy/yVYudLM/PpdyeWWFDFbZ7sH1n3R/cEPTdhO', '2024-10-11 07:55:05'),
+(4, 'paca', 'usuario4@example.com', '$2y$10$ouqONxD/UE.YV3twy/yVYudLM/PpdyeWWFDFbZ7sH1n3R/cEPTdhO', '2024-10-11 07:55:05'),
+(5, 'lala', 'lala@la.com', '$2y$10$ouqONxD/UE.YV3twy/yVYudLM/PpdyeWWFDFbZ7sH1n3R/cEPTdhO', '2024-10-11 07:55:05'),
+(7, '1234', '1234@1234.com', '$2y$10$ouqONxD/UE.YV3twy/yVYudLM/PpdyeWWFDFbZ7sH1n3R/cEPTdhO', '2024-10-11 20:34:21'),
+(8, 'dfg', 'dsf@gf.fs', '$2y$10$ouqONxD/UE.YV3twy/yVYudLM/PpdyeWWFDFbZ7sH1n3R/cEPTdhO', '2024-10-12 13:43:10'),
+(10, 'pedro', 'dsf@gf.fss', '$2y$10$ouqONxD/UE.YV3twy/yVYudLM/PpdyeWWFDFbZ7sH1n3R/cEPTdhO', '2024-10-12 13:43:57');
 
 --
 -- Índices para tablas volcadas
