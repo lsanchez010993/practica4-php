@@ -20,6 +20,11 @@ class Mensajes{
     
     const MENSAJE_EXITO_CREAR_USUARIO = '¡Usuario registrado con éxito!';
     const MENSAJE_ACTUALIZACION_CORRECTA = 'El articulo ha sido modificado correctamente';
+    const EXITO_INSERTAR_ARTICULO = 'Articulo insertado con exito';
+
+}
+class ErroresArticulos{
+    const EXITO_INSERTAR_ARTICULO = 'Articulo insertado con exito';
 }
 
 

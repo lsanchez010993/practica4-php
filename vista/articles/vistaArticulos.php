@@ -28,13 +28,7 @@ const ARTICULOS_POR_PAGINA = 5; //Esta opcion se le podria preguntar al usuario.
 
                 <?php
 
-                if (isset($_SESSION['correcto'])) {
-                    $correcto = $_SESSION['correcto'];
-
-                    echo "<h1>" . htmlspecialchars($correcto) . "</h1>";
-
-                    unset($_SESSION['correcto']);
-                }
+            
                 //Si el usuario ha iniciado sesion, guardo el usuario_id en una variable
                 if (isset($_SESSION['usuario_id'])) {
                     $user_id = $_SESSION['usuario_id'];
@@ -53,7 +47,8 @@ const ARTICULOS_POR_PAGINA = 5; //Esta opcion se le podria preguntar al usuario.
                 // Calcular desde qué artículo iniciar
                 $start = ($pagina > 1) ? ($pagina * ARTICULOS_POR_PAGINA) - ARTICULOS_POR_PAGINA : 0;
 
-                require_once 'modelo/articuloModel.php';
+           
+                require_once 'modelo/articulo/limit_articulos_por_pagina.php';
                 //compruebo si el usuario ha iniciado sesion. Si la ha iniciado guardo su user_id.
                 $user_id = isset($_SESSION['usuario_id']) ? $_SESSION['usuario_id'] : null;
 
@@ -81,6 +76,7 @@ const ARTICULOS_POR_PAGINA = 5; //Esta opcion se le podria preguntar al usuario.
 
 
                 // Consulta para contar el número total de artículos
+                require_once 'modelo/articulo/contarArticulos.php';
                 $totalArticles = contarArticulos($user_id);
 
                 // Calcular el número total de páginas

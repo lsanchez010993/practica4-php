@@ -2,7 +2,8 @@
 // cargarArticulo.php
 
 require_once '../../modelo/conexion.php';
-require_once '../../modelo/articuloModel.php';
+// require_once '../../modelo/articuloModel.php';
+require_once '../../modelo/articulo/obtenerArticuloPorId.php';
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
