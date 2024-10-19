@@ -1,5 +1,8 @@
 <?php
 // Iniciar la sesión al inicio del archivo
+require_once '../../controlador/userController/verificarSesion.php';
+
+verificarSesion();
 session_start();
 
 // Incluir el controlador correspondiente

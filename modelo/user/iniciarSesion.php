@@ -25,6 +25,7 @@ function iniciarSesion()
    
     if (verificarPassword_BD($usuario, $password, $nombre_usuario)) {
         
+
         header("Location: ../../index.php");
         exit();
     } else {

@@ -9,14 +9,19 @@ const ARTICULOS_POR_PAGINA = 5; //Esta opcion se le podria preguntar al usuario.
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu principal</title>
-    <link rel="stylesheet" href="vista/estils/estils_Index.css">
+
 
 </head>
 
 <body>
 
     <div class="contenidor">
-   
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
         <section class="articles">
             <ul>
 
@@ -24,11 +29,21 @@ const ARTICULOS_POR_PAGINA = 5; //Esta opcion se le podria preguntar al usuario.
 
                 <?php
 
-            
-                //Si el usuario ha iniciado sesion, guardo el usuario_id en una variable
-                if (isset($_SESSION['usuario_id'])) {
-                    $user_id = $_SESSION['usuario_id'];
+        
+
+                if (isset($_SESSION['nombre_usuario'])) {
+
+                    $nombre_usuario = $_SESSION['nombre_usuario'];
+                    require_once __DIR__ . '../../../controlador/userController/verificarSesion.php';
+
+                    verificarSesion();
+                } else {
+                    session_start();
+                    $nombre_usuario = '';  // O manejarlo de otra forma, como redirigir al login o mostrar un mensaje
                 }
+              
+           
+
 
 
 
@@ -43,12 +58,12 @@ const ARTICULOS_POR_PAGINA = 5; //Esta opcion se le podria preguntar al usuario.
                 // Calcular desde qué artículo iniciar
                 $start = ($pagina > 1) ? ($pagina * ARTICULOS_POR_PAGINA) - ARTICULOS_POR_PAGINA : 0;
 
-           
+
                 require_once 'modelo/articulo/limit_articulos_por_pagina.php';
                 //compruebo si el usuario ha iniciado sesion. Si la ha iniciado guardo su user_id.
                 $user_id = isset($_SESSION['usuario_id']) ? $_SESSION['usuario_id'] : null;
 
-                
+
                 if (isset($user_id) && $user_id != null) {
                     $articles = limit_articulos_por_pagina($start, ARTICULOS_POR_PAGINA, $user_id);
                     // Mostrar los artículos del usuario

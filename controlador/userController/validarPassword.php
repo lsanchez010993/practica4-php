@@ -1,9 +1,10 @@
 <?php
 
-function comprobarPassword($password, $password2 = null) {
+function comprobarPassword($password, $password2 = null)
+{
     include_once '../../controlador/errores/errores.php';
     // Array para acumular los errores
-    $errores = []; 
+    $errores = [];
 
     // Comprobar si las contraseñas coinciden
     if ($password2 !== null && $password !== $password2) {
@@ -17,27 +18,27 @@ function comprobarPassword($password, $password2 = null) {
         return $errores;
     }
 
- 
+
     if (strlen($password) < 8) {
         $errores[] = ErroresPassword::CONTRASEÑA_CORTA;
     }
 
-    
+
     if (!preg_match('/[0-9]/', $password)) {
         $errores[] = ErroresPassword::CONTRASEÑA_SIN_NUMERO;
     }
 
-   
+
     if (!preg_match('/[a-z]/', $password)) {
         $errores[] = ErroresPassword::CONTRASEÑA_SIN_MINUSCULA;
     }
 
-   
+
     if (!preg_match('/[A-Z]/', $password)) {
         $errores[] = ErroresPassword::CONTRASEÑA_SIN_MAYUSCULA;
     }
 
-    
+
     if (!empty($errores)) {
         return $errores;
     }
@@ -47,16 +48,21 @@ function comprobarPassword($password, $password2 = null) {
 
 function verificarPassword_BD($usuario, $password, $nombre_usuario)
 {
-//password_verify Verifica si el hash almacenado en la BD coincide con la contraseña en texto plano introducida ppor el usuario. 
+    // Verificar la contraseña
     if ($usuario && password_verify($password, $usuario['password'])) {
-        // Autenticación exitosa
-        //guardo las sesiones
-        session_start(); 
+        //Si el password es correcto inicio sesion y establezco el tiempo que durara la sesion del user.
+        require_once 'verificarSesion.php';
+        inicioSesion();
+
+        // Iniciar la sesión
+        session_start();
         $_SESSION['usuario_id'] = $usuario['id'];
         $_SESSION['nombre_usuario'] = $nombre_usuario;
+        $_SESSION['login_time'] = time();
+
+      
         return true;
     } else {
-      
         return false;
     }
 }

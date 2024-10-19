@@ -15,17 +15,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // Validación de la contraseña
     require_once "../../controlador/userController/validarPassword.php";
-    $resultado = comprobarPassword($password);
+    $password_ok = comprobarPassword($password);
    
 
-    if ($resultado === true) {
+    if ($password_ok === true) {
         include '../../modelo/user/iniciarSesion.php';
         //  iniciar sesión si la contraseña es válida
         $errores = iniciarSesion();
-    } else {
-        // Si la contraseña no es válida, mensaje de error
-        $errores = [ErroresPassword::CONTRASEÑA_INCORRECTA];
-    }
+    } else $errores = $password_ok;
 }
 ?>
 

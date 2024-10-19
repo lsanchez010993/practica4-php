@@ -1,6 +1,9 @@
 <?php
 require_once '../../controlador/articuloController/insertarArticuloController.php';
 require_once '../../controlador/errores/errores.php';
+require_once '../../controlador/userController/verificarSesion.php';
+
+verificarSesion();
 
 $titulo = '';
 $contenido = '';
