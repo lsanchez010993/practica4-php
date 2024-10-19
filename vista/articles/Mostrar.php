@@ -1,6 +1,9 @@
+<?php
+require_once 'controlador/errores/errores.php'
+?>
 <script>
     function confirmarEliminacion() {
-        return confirm('¿Estás seguro de que quieres eliminar este artículo?');
+        return confirm("<?php echo Mensajes::CONFIRMAR_ACTUALIZACION ?>");
     }
 </script>
 <?php

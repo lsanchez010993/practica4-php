@@ -32,7 +32,7 @@ HTML;
         echo <<<HTML
     <div class="inicio">
     <h2>Bienvenido: $nombre </h2>;
-    <button onclick="location.href='vista/articles/modificarArticulo.vista.php'">Insertar Nuevo Articulo</button>
+    <button onclick="location.href='vista/articles/insertarNuevoArticulo.php'">Insertar Nuevo Articulo</button>
     <button onclick="location.href='modelo/user/cerrarSesion.php'">Cerrar Sesión</button>
 
   </div> 

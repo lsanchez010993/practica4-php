@@ -24,11 +24,12 @@ function actualizarArticulo($id, $titulo, $contenido)
 function insertarArticulo()
 {
     require_once __DIR__ . '/../conexion.php';
-    
-   
+
+
 
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        session_start();
         $titulo = $_POST['titulo'];
         $contenido = $_POST['contenido'];
         $usuario_id = $_SESSION['usuario_id'];
@@ -40,17 +41,14 @@ function insertarArticulo()
         $stmt->bindParam(':cos', $contenido);
         $stmt->bindParam(':usuario_id', $usuario_id);
 
-        
-       
+
+
 
 
         if ($stmt->execute()) {
-           return true;
+            return true;
         } else {
             return false;
         }
-        
-        // header("Location: ../../vista/articles/insertarNuevoArticulo.php");
-        // exit();
     }
 }

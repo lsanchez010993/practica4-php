@@ -53,16 +53,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
     }
 
-    // Mostrar mensajes de error o éxito
-    // if (strpos($errores, '!') !== false) {
-    //     if (!empty($errores)) {
-    //         echo '<p class="correcto">' . htmlspecialchars($errores) . '</p>';
-    //     }
-    // } else {
-    //     if (!empty($errores)) {
-    //         echo '<p class="error">' . htmlspecialchars($errores) . '</p>';
-    //     }
-    // }
 
     ?>
 

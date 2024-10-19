@@ -16,11 +16,7 @@ const ARTICULOS_POR_PAGINA = 5; //Esta opcion se le podria preguntar al usuario.
 <body>
 
     <div class="contenidor">
-        <br>
-        <br>
-        <br>
-        <br>
-
+   
         <section class="articles">
             <ul>
 

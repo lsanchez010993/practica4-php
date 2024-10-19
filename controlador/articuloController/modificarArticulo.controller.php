@@ -1,4 +1,42 @@
 <?php
+function obtenerYActualizarArticulo() {
+    $result = [
+        'id' => null,
+        'titulo' => '',
+        'contenido' => '',
+        'errores' => []
+    ];
+
+    if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
+        
+        $result['id'] = $_GET['id'];
+
+        require_once "../../modelo/articulo/obtenerArticuloPorId.php";
+        $articulo = obtenerArticuloPorId($result['id']);
+
+        if ($articulo) {
+            $result['titulo'] = $articulo['titol'];
+            $result['contenido'] = $articulo['cos'];
+        } else {
+            require_once '../../controlador/errores/errores.php';
+            echo "<p>". ErroresArticulos::ARTICULO_NO_ENCONTRADO ."</p>";
+            exit();
+        }
+    }
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // Guardar los datos del usuario tras el envío
+        $result['titulo'] = isset($_POST['titulo']) ? $_POST['titulo'] : '';
+        $result['contenido'] = isset($_POST['contenido']) ? $_POST['contenido'] : '';
+
+        $errores = controllerModificarArticulo();
+
+
+        $result['errores'] = $errores;
+    }
+
+    return $result; // Devolver los datos y los errores para usarlos en la vista
+}
 
 
 function controllerModificarArticulo()
@@ -27,43 +65,11 @@ function controllerModificarArticulo()
 
             if ($resultado === true) {
 
-                return [Mensajes::MENSAJE_ACTUALIZACION_CORRECTA, $id];
+                return [Mensajes::MENSAJE_ACTUALIZACION_CORRECTA];
             }
         } else {
-           
+
             return $errores;
-
-           
-
-
-            // header("Location: ../articles/modificarArticulo.vista.php?id=" . $id);
-            // exit();
-        }
-    } else {
-
-        require_once '../../controlador/errores/errores.php';
-        $errores = [];
-
-        if (empty($contenido)) {
-
-            $errores[] = Errores::ERROR_CUERPO_MENSAJE_VACIO;
-        }
-        if (empty($titulo)) {
-            $errores[] = Errores::ERROR_CAMPO_TITULO_VACIO;
-        }
-        require_once "../../modelo/articulo/insertarArticulo.php";
-
-
-
-        if (empty($errores)) {
-
-            $resultado = insertarArticulo();
-            if ($resultado === true) {
-              
-                return [Mensajes::EXITO_INSERTAR_ARTICULO];
-            }
-        } else {
-          return $errores;
         }
     }
 }
