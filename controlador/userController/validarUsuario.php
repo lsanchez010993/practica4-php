@@ -25,14 +25,15 @@ function comprobarCorreoRepe($email)
 
 function validarDatosNewUser($nombre_usuario, $email, $password, $confirm_password)
 {
-    $errores = []; 
-    $correcto = []; 
+    $errores = [];
+
 
     // Validación de si el usuario está duplicado
     require_once "../../controlador/userController/validarUsuario.php";
+    require_once "../../controlador/userController/validarPassword.php";
     $userDuplicado = comprobarUsuarioRepe($nombre_usuario);
     $correoDuplicado = comprobarCorreoRepe($email);
-
+    $passCorrecto = comprobarPassword($password, $confirm_password);
     // Si hay errores, se acumulan en el array $errores
     if ($userDuplicado !== false) {
         $errores = array_merge($errores, $userDuplicado);
@@ -40,29 +41,23 @@ function validarDatosNewUser($nombre_usuario, $email, $password, $confirm_passwo
     if ($correoDuplicado !== false) {
         $errores = array_merge($errores, $correoDuplicado);
     }
+    //Al contrario que con los if anteriores: Si comprobarContraseña no devuelve true es que hay errores
+    if ($passCorrecto !== true) {
 
-
-    if (empty($errores)) {
-        require_once "../../controlador/userController/validarPassword.php";
-        $resultado = comprobarPassword($password, $confirm_password);
-
-        if ($resultado === true) {
-           
-            require_once '../../modelo/user/registrarUsuario.php';
-            include_once '../../controlador/errores/errores.php';
-            if (registrarUsuario($nombre_usuario, $email, $password)) {
-                $correcto[] = Mensajes::MENSAJE_EXITO_CREAR_USUARIO;
-            }
-        } else {
-            // Si la contraseña no es válida, se agrega el error.
-            $errores = array_merge($errores, $resultado);
-        }
+        $errores = array_merge($errores, $passCorrecto);
     }
 
-    
+
+    return $errores;
+}
+function registrarUsuarioController($errores, $nombre_usuario, $email, $password)
+{
+
     if (empty($errores)) {
-        return $correcto;
-    } else {
-        return $errores;
+        require_once '../../modelo/user/registrarUsuario.php';
+        include_once '../../controlador/errores/errores.php';
+        if (registrarUsuario($nombre_usuario, $email, $password)) {
+            return Mensajes::MENSAJE_EXITO_CREAR_USUARIO;
+        }
     }
 }

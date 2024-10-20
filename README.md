@@ -12,7 +12,7 @@ He dividido el codigo en modelo/vista/controlador, haciéndolo modular.
 
 He utilizado constantes para mostrar los diferentes textos (mensajes de error, advertencias o notificaciones).
 
-Realizo las comprobaciones oportunas para que los nombres de usuario y los correos sean unicos en la BD. 
+Mediante PHP compruevo que los nombres de usuario y los correos sean unicos en la BD antes permitir que el usuario se registre. 
 
 Valido que el password cumpla los requisitos de seguridad.
 

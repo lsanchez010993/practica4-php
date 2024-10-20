@@ -26,10 +26,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     require_once '../../controlador/userController/validarUsuario.php';
     // Llamar a la función para validar datos:
-  
     $errores = validarDatosNewUser($nombre_usuario, $email, $password, $confirm_password);
-   
-   
+    $correcto = registrarUsuarioController($errores, $nombre_usuario, $email, $password,);
+    // Si no hay errores, vaciamos los campos del formulario
+    if (empty($errores)) {
+        $nombre_usuario = "";
+        $email = "";
+        $password = "";
+        $confirm_password = "";
+    }
 }
 ?>
 
@@ -55,17 +60,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         // Mostrar los errores, si existen
         if (!empty($errores)) {
             foreach ($errores as $error) {
-                if (strpos($error, '!') !== false) {
-                    echo '<p class="correcto">' . htmlspecialchars($error) . '</p>';
-                } else {
-                    echo '<p class="error">' . htmlspecialchars($error) . '</p>';
-                }
+
+                echo '<p class="error">' . htmlspecialchars($error) . '</p>';
             }
+        } else {
+            if (!empty($correcto)) echo '<p class="correcto">' . htmlspecialchars($correcto) . '</p>';
         }
         ?>
     </form>
-
-
 </body>
 
 </html>
