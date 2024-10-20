@@ -22,7 +22,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         include '../../modelo/user/iniciarSesion.php';
         //  iniciar sesión si la contraseña es válida
         $errores = iniciarSesion();
-    } else $errores = $password_ok;
+        //Si comprobarPassword() da error sustituyo los mensajes de error por el mensaje generico "contraseña incorrecta".
+    } else $errores = [ErroresPassword::CONTRASEÑA_INCORRECTA];
 }
 ?>
 

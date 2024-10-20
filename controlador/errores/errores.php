@@ -8,7 +8,7 @@ class Errores{
 
 }
 class ErroresPassword {
-    const CONTRASEÑA_INCORRECTA = "Contrasela es incorrecta.";
+    const CONTRASEÑA_INCORRECTA = "La contrasela es incorrecta.";
     const CONTRASEÑAS_NO_COINCIDEN = "Las contraseñas no coinciden.";
     const CONTRASEÑA_VACIA = "La contraseña no puede estar vacía.";
     const CONTRASEÑA_CORTA = "La contraseña debe tener al menos 8 caracteres.";
