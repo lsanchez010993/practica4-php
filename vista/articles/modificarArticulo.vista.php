@@ -3,7 +3,7 @@
 require_once '../../controlador/userController/verificarSesion.php';
 
 verificarSesion();
-session_start();
+
 
 // Incluir el controlador correspondiente
 require_once '../../controlador/articuloController/modificarArticulo.controller.php';

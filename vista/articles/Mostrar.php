@@ -8,14 +8,13 @@ require_once 'controlador/errores/errores.php'
 </script>
 <?php
 
-//Utilizo esta funcion tanto en vistaArticulosGeneral.php como en vistaArticulosUsuario.php.
-//Si la accion que se le pasa es 'editar' agrega las opciones de editar junto a cada articulo.
+//Utilizo esta funcion en vistaArticulos. Si la accion que se le pasa a 'listarArticulos()' es 'editar' agrega las opciones de editar junto a cada articulo.
 //De otra forma estas permanecen ocultas.
 function listarArticulos($articles, $accion = null)
 {
 
 
-    // Verificar si hay artículos
+    // Verificar si hay artículos y mostrarlos
     if (!empty($articles)) {
         if ($accion == 'editar') echo "<h1>Mis articulos</h1>";
         else echo '<h1>Todos los articulos</h1>';
@@ -23,7 +22,7 @@ function listarArticulos($articles, $accion = null)
 
             $titulo = htmlspecialchars($article['titol']);
             $contenido = htmlspecialchars($article['cos']);
-
+            //Utilizo heredocs: <<<HTML... HTML;
             echo <<<HTML
             
         <div>
@@ -43,9 +42,7 @@ HTML;
             }
         }
     } else {
-        echo <<<HTML
-    <p>No hi ha articles disponibles.</p>
-HTML;
+        echo Mensajes::NO_ARTICULOS;
     }
 }
 

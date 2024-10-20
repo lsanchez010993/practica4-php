@@ -1,5 +1,7 @@
 <?php
-
+//inicia una sesión si no está ya activa, luego verifica si el usuario ha iniciado sesión. 
+//Si la sesión ha expirado, la destruye y redirige al usuario a una página de sesión expirada. 
+//Si no ha expirado, actualiza el tiempo de inicio de sesión. Si no hay sesión de usuario, redirige al índice.
 function verificarSesion()
 {
     if (session_status() == PHP_SESSION_NONE) {

@@ -23,6 +23,7 @@ class Mensajes{
     const EXITO_INSERTAR_ARTICULO = 'Articulo insertado con exito';
     conSt CONFIRMAR_ACTUALIZACION = "¿Estás seguro de que quieres actualizar este artículo?";
     conSt CONFIRMAR_ELIMINACION = "¿Estás seguro de que quieres eliminar este artículo?";
+    const NO_ARTICULOS = "Aún no has insertado ningun artículo";
 
 }
 class ErroresArticulos{

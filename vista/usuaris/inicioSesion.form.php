@@ -9,11 +9,11 @@
 
 <?php
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-   
+    $errores=[];
     // $nombre_usuario = $_POST['nombre_usuario'];
     $password = $_POST['password'];
 
-    // Validación de la contraseña
+    // Validación de la contraseña. Antes de hacer la conexion a la base de datos, compruebo si el password cumple los requisitos.
     require_once "../../controlador/userController/validarPassword.php";
     $password_ok = comprobarPassword($password);
    

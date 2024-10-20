@@ -21,13 +21,13 @@ function validarDatosNewUser($nombre_usuario, $email, $password, $confirm_passwo
     $userDuplicado = comprobarUsuarioRepe($nombre_usuario);
 
     if ($userDuplicado === false) {
-        // Si el usuario no está duplicado, continuamos con la validación de la contraseña
+        // Si el usuario no está duplicado, continuo con la validación de la contraseña
         require_once "../../controlador/userController/validarPassword.php";
         $resultado = comprobarPassword($password, $confirm_password);
 
         if ($resultado === true) {
 
-            // Si la contraseña es válida y coincide, intentamos registrar al usuario
+            // Si la contraseña es válida y coincide, procedo a registrar el usuario
             require_once '../../modelo/user/registrarUsuario.php';
             include_once '../../controlador/errores/errores.php';
             if (registrarUsuario($nombre_usuario, $email, $password)) {
@@ -35,11 +35,11 @@ function validarDatosNewUser($nombre_usuario, $email, $password, $confirm_passwo
                
             }
         } else {
-            // Si la contraseña no es válida, mostramos el mensaje de error
+            // Si la contraseña no es válida, mensaje de error
             $errores = $resultado;
         }
     } else {
-        // Si el usuario ya existe, no debemos continuar con el registro y mostramos el error
+        // Si el usuario ya existe, mensaje de error
         $errores = $userDuplicado;
     }
 

@@ -1,6 +1,6 @@
 <?php
 // He definido una constante para que resulte más facil modificar el numero de artículos que debe mostrarse por página
-const ARTICULOS_POR_PAGINA = 5; //Esta opcion se le podria preguntar al usuario. Rollo iconos que muestren 5, 10 15 articulos por pagina
+const ARTICULOS_POR_PAGINA = 5; //Esta opcion se le podria preguntar al usuario. Iconos que muestren 5, 10 15 articulos por pagina
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,12 +9,8 @@ const ARTICULOS_POR_PAGINA = 5; //Esta opcion se le podria preguntar al usuario.
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu principal</title>
-
-
 </head>
-
 <body>
-
     <div class="contenidor">
         <br>
         <br>
@@ -24,30 +20,15 @@ const ARTICULOS_POR_PAGINA = 5; //Esta opcion se le podria preguntar al usuario.
         <br>
         <section class="articles">
             <ul>
-
-
-
                 <?php
-
-        
-
+               //Si el usuario ha iniciado sesion... verificarSesion() controla el tiempo que estara abierta la sesion
                 if (isset($_SESSION['nombre_usuario'])) {
 
                     $nombre_usuario = $_SESSION['nombre_usuario'];
-                    require_once __DIR__ . '../../../controlador/userController/verificarSesion.php';
-
+                    require_once __DIR__ . '../../../controlador/userController/verificarSesion.php';                 
                     verificarSesion();
-                } else {
-                    session_start();
-                    $nombre_usuario = '';  // O manejarlo de otra forma, como redirigir al login o mostrar un mensaje
-                }
-              
+                } 
            
-
-
-
-
-
                 // Establecer la página actual
 
                 $pagina = isset($_GET['page']) ? (int)$_GET['page'] : 1;
@@ -58,25 +39,23 @@ const ARTICULOS_POR_PAGINA = 5; //Esta opcion se le podria preguntar al usuario.
                 // Calcular desde qué artículo iniciar
                 $start = ($pagina > 1) ? ($pagina * ARTICULOS_POR_PAGINA) - ARTICULOS_POR_PAGINA : 0;
 
-
                 require_once 'modelo/articulo/limit_articulos_por_pagina.php';
                 //compruebo si el usuario ha iniciado sesion. Si la ha iniciado guardo su user_id.
                 $user_id = isset($_SESSION['usuario_id']) ? $_SESSION['usuario_id'] : null;
 
-
+                //Listo solo los articulos de un usuario
                 if (isset($user_id) && $user_id != null) {
                     $articles = limit_articulos_por_pagina($start, ARTICULOS_POR_PAGINA, $user_id);
                     // Mostrar los artículos del usuario
                     require_once 'vista/articles/Mostrar.php';
                     listarArticulos($articles, 'editar');
+                     //Listo todos los articulos:
                 } else {
                     $articles = limit_articulos_por_pagina($start, ARTICULOS_POR_PAGINA);
                     // Mostrar todos los artículos
                     require_once 'vista/articles/Mostrar.php';
                     listarArticulos($articles);
                 }
-
-
                 ?>
             </ul>
         </section>
@@ -84,22 +63,18 @@ const ARTICULOS_POR_PAGINA = 5; //Esta opcion se le podria preguntar al usuario.
         <section class="paginacio">
             <ul>
                 <?php
-
-
                 // Consulta para contar el número total de artículos
                 require_once 'modelo/articulo/contarArticulos.php';
                 $totalArticles = contarArticulos($user_id);
 
                 // Calcular el número total de páginas
                 $totalPages = ceil($totalArticles / ARTICULOS_POR_PAGINA);
-
                 // Botón "Anterior"
                 if ($pagina > 1) {
                     echo '<li><a href="?page=' . ($pagina - 1) . '">&laquo;</a></li>';
                 } else {
                     echo '<li class="disabled"><a href="#">&laquo;</a></li>';
                 }
-
                 // Generar los enlaces para cada página
                 for ($i = 1; $i <= $totalPages; $i++) {
                     if ($pagina == $i) {
@@ -108,7 +83,6 @@ const ARTICULOS_POR_PAGINA = 5; //Esta opcion se le podria preguntar al usuario.
                         echo '<li><a href="?page=' . $i . '">' . $i . '</a></li>';
                     }
                 }
-
                 // Botón "Siguiente"
                 if ($pagina < $totalPages) {
                     echo '<li><a href="?page=' . ($pagina + 1) . '">&raquo;</a></li>';
