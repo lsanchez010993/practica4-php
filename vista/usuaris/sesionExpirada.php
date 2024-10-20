@@ -8,6 +8,6 @@
 <body>
     <h1>La sesion ha expirado</h1>
     
-    <button onclick="location.href='../../index.php'">Vuelve al inicio</button>
+    <button onclick="location.href='../../index.php'">Volver a inicio</button>
 </body>
 </html>
