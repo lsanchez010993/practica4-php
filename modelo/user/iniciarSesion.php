@@ -24,13 +24,13 @@ function iniciarSesion()
             header("Location: ../../index.php");
             exit();
         } else {
-                       $errores = [Errores::ERROR_INICIO_SESION];
+                       $errores = [ErroresInicioSesion::ERROR_INICIO_SESION];
             require_once '../../vista/usuaris/inicioSesion.form.php';
             return $errores;
         }
     } catch (PDOException $e) {
              error_log("Error al iniciar sesión: " . $e->getMessage());
-        $errores = [Errores::ERROR_INICIO_SESION];
+        $errores = [ErroresInicioSesion::ERROR_INICIO_SESION];
         require_once '../../vista/usuaris/inicioSesion.form.php';
         return $errores;
     }

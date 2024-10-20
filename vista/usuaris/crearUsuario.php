@@ -26,7 +26,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     require_once '../../controlador/userController/validarUsuario.php';
     // Llamar a la función para validar datos:
+  
     $errores = validarDatosNewUser($nombre_usuario, $email, $password, $confirm_password);
+   
+   
 }
 ?>
 
