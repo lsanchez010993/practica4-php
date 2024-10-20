@@ -18,17 +18,17 @@ $errores = "";
 
 // Procesar el formulario si se ha enviado
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    // Obtenemos los valores del formulario
+    
     $nombre_usuario = $_POST['nombre_usuario'];
     $email = $_POST['email'];
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
 
     require_once '../../controlador/userController/validarUsuario.php';
-    // Llamar a la función para validar datos:
+   
     $errores = validarDatosNewUser($nombre_usuario, $email, $password, $confirm_password);
     $correcto = registrarUsuarioController($errores, $nombre_usuario, $email, $password,);
-    // Si no hay errores, vaciamos los campos del formulario
+    // vacio los campos del formulario en caso de que no haya errores
     if (empty($errores)) {
         $nombre_usuario = "";
         $email = "";
@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <h1>Crear nuevo usuario</h1>
     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
         <label for="nombre_usuario">Nombre de Usuario:</label>
-        <!-- Mantener el valor ingresado si hay errores -->
+        
         <input type="text" name="nombre_usuario" value="<?php echo htmlspecialchars($nombre_usuario); ?>" required><br>
 
         <label for="email">Email:</label>
