@@ -2,14 +2,11 @@
 
 function verificarSesion()
 {
-      if (session_status() == PHP_SESSION_NONE) {
+    if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
     if (isset($_SESSION['usuario_id'])) {
-        if (time() - $_SESSION['login_time'] > 2400) { 
-            // var_dump("Estoy a punto  de destruir la sesion");
-            // exit();
-            // La sesión ha expirado
+        if (time() - $_SESSION['login_time'] > 2400) {
             session_unset();
             session_destroy();
             // Redirigir 
@@ -26,9 +23,6 @@ function verificarSesion()
 }
 function inicioSesion()
 {
-    ini_set('session.gc_maxlifetime', 2400); 
+    ini_set('session.gc_maxlifetime', 2400);
     session_set_cookie_params(2400);
-    $_SESSION['login_time'] = time();
-
-  
 }
