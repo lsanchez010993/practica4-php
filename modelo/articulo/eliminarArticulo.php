@@ -18,7 +18,7 @@ function eliminarArticulo($id)
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
 
-        // Si el artículo se elimina correctamente, redirige al index
+        // Si el artículo se elimina correctamente, redirige a index
         header("Location: ../../index.php");
         exit();
     } catch (PDOException $e) {

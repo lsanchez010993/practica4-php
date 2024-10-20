@@ -1,5 +1,6 @@
 <?php
-function obtenerYActualizarArticulo() {
+function obtenerYActualizarArticulo()
+{
     $result = [
         'id' => null,
         'titulo' => '',
@@ -8,7 +9,7 @@ function obtenerYActualizarArticulo() {
     ];
 
     if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
-        
+
         $result['id'] = $_GET['id'];
 
         require_once "../../modelo/articulo/obtenerArticuloPorId.php";
@@ -19,7 +20,7 @@ function obtenerYActualizarArticulo() {
             $result['contenido'] = $articulo['cos'];
         } else {
             require_once '../../controlador/errores/errores.php';
-            echo "<p>". ErroresArticulos::ARTICULO_NO_ENCONTRADO ."</p>";
+            echo "<p>" . ErroresArticulos::ARTICULO_NO_ENCONTRADO . "</p>";
             exit();
         }
     }
@@ -52,10 +53,10 @@ function controllerModificarArticulo()
 
         if (empty($contenido)) {
 
-            $errores[] = Errores::ERROR_CUERPO_MENSAJE_VACIO;
+            $errores[] = ErroresArticulos::CUERPO_MENSAJE_VACIO;
         }
         if (empty($titulo)) {
-            $errores[] = Errores::ERROR_CAMPO_TITULO_VACIO;
+            $errores[] = ErroresArticulos::CAMPO_TITULO_VACIO;
         }
         if (empty($errores)) {
 

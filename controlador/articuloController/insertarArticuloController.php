@@ -12,10 +12,10 @@ function insertarArticuloController()
 
     if (empty($contenido)) {
 
-        $errores[] = Errores::ERROR_CUERPO_MENSAJE_VACIO;
+        $errores[] = ErroresArticulos::CUERPO_MENSAJE_VACIO;
     }
     if (empty($titulo)) {
-        $errores[] = Errores::ERROR_CAMPO_TITULO_VACIO;
+        $errores[] = ErroresArticulos::CAMPO_TITULO_VACIO;
     }
     require_once "../../modelo/articulo/insertarArticulo.php";
 

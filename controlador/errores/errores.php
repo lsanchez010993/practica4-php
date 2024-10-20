@@ -1,11 +1,5 @@
 <?php
-class Errores{
 
-    const ERROR_CUERPO_MENSAJE_VACIO = 'El cuerpo del mensaje no puede estar vacio.';
-    const ERROR_CAMPO_TITULO_VACIO = 'El titulo no puede estar vacio.';
-  
-
-}
 class ErroresPassword {
     const CONTRASEÑA_INCORRECTA = "La contrasela es incorrecta.";
     const CONTRASEÑAS_NO_COINCIDEN = "Las contraseñas no coinciden.";
@@ -27,6 +21,8 @@ class Mensajes{
 }
 class ErroresArticulos{
     const ARTICULO_NO_ENCONTRADO = 'Articulo no encontrado';
+    const CUERPO_MENSAJE_VACIO = 'El cuerpo del mensaje no puede estar vacio.';
+    const CAMPO_TITULO_VACIO = 'El titulo no puede estar vacio.';
 }
 Class ErroresInicioSesion{
     const ERROR_INICIO_SESION = 'El usuario o la contraseña no son correctos';
