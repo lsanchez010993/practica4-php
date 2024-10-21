@@ -14,8 +14,9 @@ class Mensajes{
     const MENSAJE_EXITO_CREAR_USUARIO = '¡Usuario registrado con éxito!';
     const MENSAJE_ACTUALIZACION_CORRECTA = 'El articulo ha sido modificado correctamente';
     const EXITO_INSERTAR_ARTICULO = 'Articulo insertado con exito';
-    conSt CONFIRMAR_ACTUALIZACION = "¿Estás seguro de que quieres actualizar este artículo?";
-    conSt CONFIRMAR_ELIMINACION = "¿Estás seguro de que quieres eliminar este artículo?";
+    const CONFIRMAR_ACTUALIZACION = "¿Estás seguro de que quieres actualizar este artículo?";
+    const CONFIRMAR_CREAR_ARTICULO = "¿Estás seguro de que quieres insertar un nuevo artículo?";
+    const CONFIRMAR_ELIMINACION = "¿Estás seguro de que quieres eliminar este artículo?";
     const NO_ARTICULOS = "Aún no has insertado ningun artículo";
 
 }

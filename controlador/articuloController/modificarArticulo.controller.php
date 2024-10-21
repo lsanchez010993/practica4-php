@@ -48,7 +48,7 @@ function controllerModificarArticulo()
     $id = $_GET['id'];
     require_once '../../controlador/errores/errores.php';
     if (isset($_GET['id'])) {
-        require_once '../../controlador/errores/errores.php';
+       
         $errores = [];
 
         if (empty($contenido)) {
@@ -66,7 +66,7 @@ function controllerModificarArticulo()
 
             if ($resultado === true) {
 
-                return [Mensajes::MENSAJE_ACTUALIZACION_CORRECTA];
+                return Mensajes::MENSAJE_ACTUALIZACION_CORRECTA;
             }
         } else {
 

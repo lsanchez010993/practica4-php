@@ -10,12 +10,14 @@ require_once '../../controlador/articuloController/modificarArticulo.controller.
 require_once '../../controlador/errores/errores.php';
 
 $resultado = obtenerYActualizarArticulo();
+
 //$resultado es un array que contiene los siguientes datos:
 
 $id = $resultado['id'];
 $titulo = $resultado['titulo'];
 $contenido = $resultado['contenido'];
 $errores = $resultado['errores'];
+
 ?>
 
 <!DOCTYPE html>
@@ -24,6 +26,7 @@ $errores = $resultado['errores'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modificar Artículo</title>
+    <link rel="stylesheet" href="../estils/estilos_formulario.css">
     <script>
         function confirmarActualizacion() {
             return confirm("<?php echo Mensajes::CONFIRMAR_ACTUALIZACION?>");
@@ -40,19 +43,32 @@ $errores = $resultado['errores'];
         <input type="text" name="titulo" id="titulo" value="<?php echo htmlspecialchars($titulo); ?>"><br>
 
         <label for="contenido">Contenido:</label>
-        <textarea name="contenido" id="contenido" cols="50" rows="5"><?php echo htmlspecialchars($contenido); ?></textarea><br>
+        <textarea name="contenido" id="contenido" ><?php echo htmlspecialchars($contenido); ?></textarea><br>
 
         <button type="submit">Actualizar Artículo</button>
         <button type="button" onclick="location.href='../../index.php'">Atrás</button>
     </form>
 
     <?php
-    // Mostrar errores si existen
+
+   
     if (!empty($errores) && is_array($errores)) {
+    
+        // Si hay errores, mostramos cada uno de ellos
+        echo '<div class="error">';
         foreach ($errores as $error) {
-            echo $error . '<br>';
+            echo htmlspecialchars($error) . '<br>';
         }
+        echo '</div>';
+    } elseif ($errores === Mensajes::MENSAJE_ACTUALIZACION_CORRECTA) {
+     
+        echo '<div class="correcto">';
+        echo htmlspecialchars($errores) . '<br>';
+        echo '</div>';
     }
+    
     ?>
+    
+    
 </body>
 </html>

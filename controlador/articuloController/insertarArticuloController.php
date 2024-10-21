@@ -1,14 +1,14 @@
 <?php
 
 
-function insertarArticuloController()
+function verificarErrores_insertarArticulo()
 {
     $titulo = $_POST['titulo'];
     $contenido = $_POST['contenido'];
-    
+
 
     require_once '../../controlador/errores/errores.php';
-    $errores = [];
+
 
     if (empty($contenido)) {
 
@@ -17,27 +17,26 @@ function insertarArticuloController()
     if (empty($titulo)) {
         $errores[] = ErroresArticulos::CAMPO_TITULO_VACIO;
     }
-    require_once "../../modelo/articulo/insertarArticulo.php";
-
-
-
     if (empty($errores)) {
-      
-        $resultado = insertarArticulo();
-        if ($resultado === true) {
-         
-            return [Mensajes::EXITO_INSERTAR_ARTICULO];
-        }
+        return true;
     } else {
-      return $errores;
+      
+
+        return $errores;
     }
 }
+function insertarNuevoArticulo()
+{
+    require_once "../../modelo/articulo/insertarArticulo.php";
+    require_once '../../controlador/errores/errores.php';
 
 
+    $resultado = insertarArticulo();
+   
+    if ($resultado === true) {
 
-
-
-
-
-
-
+        return Mensajes::EXITO_INSERTAR_ARTICULO;
+    } else {
+        return 'error';
+    }
+}
