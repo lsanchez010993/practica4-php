@@ -40,17 +40,13 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $id = $resultado['id'];
 $titulo = $resultado['titulo'];
 $contenido = $resultado['contenido'];
+
 if (!empty($resultado['errores'])) {
     $errores = array_merge($errores, $resultado['errores']);
 }
-
-
-
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -62,11 +58,8 @@ if (!empty($resultado['errores'])) {
         }
     </script>
 </head>
-
 <body>
     <h1>Modificar Artículo</h1>
-
-
     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) . '?id=' . urlencode($id); ?>" method="POST" onsubmit="return confirmarActualizacion();">
         <input type="hidden" name="id" value="<?php echo htmlspecialchars($id); ?>">
 
