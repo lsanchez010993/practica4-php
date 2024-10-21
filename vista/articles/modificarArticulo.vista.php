@@ -1,12 +1,10 @@
 <?php
 
 require_once '../../controlador/userController/verificarSesion.php';
-verificarSesion();
-
-
 require_once '../../controlador/articuloController/modificarArticulo.controller.php';
 require_once '../../controlador/errores/errores.php';
 
+verificarSesion();
 
 $correcto = '';
 $errores = [];
