@@ -1,57 +1,4 @@
 <?php
-// function obtenerYActualizarArticulo()
-// {
-//     $result = [
-//         'id' => null,
-//         'titulo' => '',
-//         'contenido' => '',
-//         'errores' => []
-//     ];
-
-//     if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
-
-//         $result['id'] = $_GET['id'];
-
-//         require_once "../../modelo/articulo/obtenerArticuloPorId.php";
-//         $articulo = obtenerArticuloPorId($result['id']);
-
-//         if ($articulo) {
-//             $result['titulo'] = $articulo['titol'];
-//             $result['contenido'] = $articulo['cos'];
-//         } else {
-//             require_once '../../controlador/errores/errores.php';
-//             echo "<p>" . ErroresArticulos::ARTICULO_NO_ENCONTRADO . "</p>";
-//             exit();
-//         }
-//     }
-
-//     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-//         // Guardar los datos del usuario tras el envío
-//         $result['titulo'] = isset($_POST['titulo']) ? $_POST['titulo'] : '';
-//         $result['contenido'] = isset($_POST['contenido']) ? $_POST['contenido'] : '';
-
-//         $errores = controllerModificarArticulo();
-
-
-//         $result['errores'] = $errores;
-//     }
-
-//     return $result; // Devolver los datos y los errores para usarlos en la vista
-// }
-// function modificarArticulo()
-// {
-
-//     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-//         // Guardar los datos del usuario tras el envío
-
-
-//         $errores = controllerModificarArticulo();
-
-
-//         $result['errores'] = $errores;
-//     }
-// }
-
 function leerArticulo()
 {
     $result = [
@@ -71,13 +18,10 @@ function leerArticulo()
     } else {
         require_once '../../controlador/errores/errores.php';
         $result['errores'] = ErroresArticulos::ARTICULO_NO_ENCONTRADO;
-        
     }
 
     return $result; // Devolver los datos y los errores para usarlos en la vista
 }
-
-
 
 function controllerModificarArticulo()
 {
@@ -107,8 +51,6 @@ function controllerModificarArticulo()
 
 function actualizar_articulo($id, $titulo, $contenido)
 {
-
-
     require_once "../../modelo/articulo/insertarArticulo.php";
 
     $resultado = actualizarArticulo($id, $titulo, $contenido);
