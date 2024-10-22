@@ -17,7 +17,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($errores === true) {
         $correcto = insertarNuevoArticulo();
     }
-
 }
 
 ?>
@@ -60,10 +59,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         echo '</div>';
     }
-        if (!empty($correcto)){
+    if (!empty($correcto)) {
         echo '<div class="correcto">' . $correcto . '</div>';
-        }
-    
+    }
+
 
     ?>
 </body>
