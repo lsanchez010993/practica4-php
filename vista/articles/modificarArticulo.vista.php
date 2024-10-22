@@ -5,7 +5,7 @@ require_once '../../controlador/articuloController/modificarArticulo.controller.
 require_once '../../controlador/errores/errores.php';
 
 verificarSesion();
-
+$exito = false;
 $correcto = '';
 $errores = [];
 $resultado = [
@@ -13,7 +13,7 @@ $resultado = [
     'titulo' => '',
     'contenido' => ''
 ];
-$exito=false;
+
 // cargar los datos del artículo
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
     $resultado = leerArticulo();
@@ -67,10 +67,8 @@ if (!empty($resultado['errores'])) {
 
         <label for="contenido">Contenido:</label>
         <textarea name="contenido" id="contenido"><?php echo htmlspecialchars($contenido); ?></textarea><br>
-        <?php
-        if (!$exito) echo '<button type="submit">Actualizar Artículo</button>'
-        ?>
-        
+        <?php if (!$exito) echo '<button type="submit">Actualizar Artículo</button>' ?>
+       
         <button type="button" onclick="location.href='../../index.php'">Atrás</button>
         <?php
         // Mostrar mensaje de éxito si el artículo se actualizó correctamente
