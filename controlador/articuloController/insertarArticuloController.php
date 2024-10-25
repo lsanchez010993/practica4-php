@@ -34,7 +34,7 @@ function procesarFormulario()
 
     if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
         // Ruta donde se guardarán las imágenes
-        $rutaImagenes = __DIR__ . '/../../vista/imagenes/';
+        $rutaImagenes = __DIR__ . '/../../vista/imagenes/imagenes/';
 
         // Asegurarse de que la carpeta existe
         if (!is_dir($rutaImagenes)) {
@@ -60,7 +60,7 @@ function procesarFormulario()
             if (move_uploaded_file($rutaTemporal, $rutaDestino)) {
                 // El archivo se ha subido correctamente
                 // Guardar la ruta relativa o el nombre del archivo en la base de datos
-                $rutaImagenBD = 'imagenes/' . $nombreArchivoSeguro;
+                $rutaImagenBD = 'imagenes/imagenes/' . $nombreArchivoSeguro;
             } else {
                 // Error al mover el archivo
                 $errores[] = 'Error al guardar la imagen en el servidor.';
