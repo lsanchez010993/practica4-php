@@ -4,7 +4,7 @@ A groso modo:
 
 El codigo está comentado. No he hecho nada que se salga de lo común. El código funciona bien. Las validaciones funcionan bien y las diferentes paginas de la vista funcionan como se espera de ellas.
 
-Las sesions las he implementado correctamente para controlar las sesiones de usuario (no muestro mensajes de error con ellas). Las cokies no las he implementeado por falta de tiempo.
+Las sesions las he implementado correctamente para controlar las sesiones de usuario (no muestro mensajes de error con ellas). Utilizo las cokies en el form de inicioSesion para recordar al usuario
 
 He aplicado un CSS superficial para mostrar las diferentes vistas.
 
