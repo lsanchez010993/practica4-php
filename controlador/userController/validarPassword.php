@@ -61,9 +61,6 @@ function verificarPassword_BD($usuario, $password, $nombre_usuario)
         $_SESSION['nombre_usuario'] = $nombre_usuario;
         $_SESSION['login_time'] = time();
 
-       
-
-      
         return true;
     } else {
         return false;
