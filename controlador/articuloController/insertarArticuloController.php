@@ -43,7 +43,7 @@ function procesarFormulario()
 
       
         $nombreArchivo = $_FILES['imagen']['name'];
-        $tipoArchivo = $_FILES['imagen']['type'];
+    
         $rutaTemporal = $_FILES['imagen']['tmp_name'];
 
         

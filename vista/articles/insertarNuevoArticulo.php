@@ -11,10 +11,12 @@ $errores = [];
 $correcto = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Procesar el formulario y obtener resultados
+    //La función list() en PHP permite asignar varios valores a múltiples variables desde un array 
+    // o una lista de valores devueltos por una función. Es una forma práctica de descomponer un array
+    //  o una estructura similar y asignar cada elemento a una variable individual.
     list($errores, $correcto) = procesarFormulario();
 
-    // Mantener los valores ingresados en caso de error
+    
     $titulo = $_POST['titulo'];
     $contenido = $_POST['contenido'];
 }
