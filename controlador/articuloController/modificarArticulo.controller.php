@@ -56,8 +56,7 @@ function actualizar_articulo($id, $titulo, $contenido)
     $resultado = actualizarArticulo($id, $titulo, $contenido);
 
     if ($resultado === true) {
-        // var_dump($resultado);
-        // exit();
+       
         return Mensajes::MENSAJE_ACTUALIZACION_CORRECTA;
     }
 }

@@ -118,3 +118,31 @@ h1 {
     text-decoration: none;
     background: #399228;
 }
+.tarjeta-imagen {
+    width: 300px;   /* Ancho deseado */
+    height: 200px;  /* Alto deseado */
+    object-fit: cover; /* Ajusta la imagen para que llene el contenedor */
+    border: 1px solid #ccc; /* Opcional: añade un borde */
+    border-radius: 5px;     /* Opcional: esquinas redondeadas */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Opcional: sombra */
+}
+.tarjeta {
+    display: inline-block;
+    width: 320px; /* Un poco más ancho que la imagen para margen interno */
+    margin: 10px;
+    vertical-align: top;
+    text-align: center;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+.tarjeta h2 {
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+.tarjeta p {
+    font-size: 0.9em;
+    color: #555;
+}
+

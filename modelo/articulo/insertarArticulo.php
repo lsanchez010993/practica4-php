@@ -1,11 +1,4 @@
 <?php
-if (isset($_GET['action'])) {
-    $action = $_GET['action'];
-    session_start();
-    if ($action === 'insertar') {
-        insertarArticulo();
-    }
-}
 
 function actualizarArticulo($id, $titulo, $contenido)
 {
@@ -28,32 +21,27 @@ function actualizarArticulo($id, $titulo, $contenido)
     }
 }
 
-function insertarArticulo()
+
+
+function insertarArticulo($titulo, $contenido, $rutaImagen, $usuario_id)
 {
     try {
         require_once __DIR__ . '/../conexion.php';
+        $pdo = connectarBD();
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $titulo = $_POST['titulo'];
-            $contenido = $_POST['contenido'];
-            $usuario_id = $_SESSION['usuario_id'];
+        // Preparar la consulta SQL para insertar el artículo con el usuario_id
+        $sql = "INSERT INTO articles (titol, cos, ruta_imagen, usuario_id) VALUES (:titol, :cos, :ruta_imagen, :usuario_id)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':titol', $titulo);
+        $stmt->bindParam(':cos', $contenido);
+        $stmt->bindParam(':ruta_imagen', $rutaImagen);
+        $stmt->bindParam(':usuario_id', $usuario_id, PDO::PARAM_INT);
 
-            $pdo = connectarBD();
-            $sql = "INSERT INTO articles (titol, cos, usuario_id) VALUES (:titol, :cos, :usuario_id)";
-            $stmt = $pdo->prepare($sql);
-            $stmt->bindParam(':titol', $titulo);
-            $stmt->bindParam(':cos', $contenido);
-            $stmt->bindParam(':usuario_id', $usuario_id);
-
-            if ($stmt->execute()) {
-                return true;
-            } else {
-                return false;
-            }
-        }
+        return $stmt->execute();
     } catch (PDOException $e) {
- 
         error_log("Error al insertar el artículo: " . $e->getMessage());
-        return false; // Devuelve false en caso de error
+        return false;
     }
 }
+
+

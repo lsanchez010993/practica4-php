@@ -1,24 +1,23 @@
 <?php
+require_once '../../controlador/userController/verificarSesion.php';
 require_once '../../controlador/articuloController/insertarArticuloController.php';
 require_once '../../controlador/errores/errores.php';
-require_once '../../controlador/userController/verificarSesion.php';
 
 verificarSesion();
 
 $titulo = '';
 $contenido = '';
 $errores = [];
-$correcto;
+$correcto = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $errores = verificarErrores_insertarArticulo();
-    // var_dump($errores);
-    // exit();
-    if ($errores === true) {
-        $correcto = insertarNuevoArticulo();
-    }
-}
+    // Procesar el formulario y obtener resultados
+    list($errores, $correcto) = procesarFormulario();
 
+    // Mantener los valores ingresados en caso de error
+    $titulo = $_POST['titulo'];
+    $contenido = $_POST['contenido'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -39,12 +38,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <h1>Crear Artículo</h1>
 
-    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST" onsubmit="return confirmarCreacion();">
+    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST" enctype="multipart/form-data" onsubmit="return confirmarCreacion();">
         <label for="titulo">Título:</label>
         <input type="text" name="titulo" id="titulo" value="<?php echo htmlspecialchars($titulo); ?>"><br>
 
         <label for="contenido">Contenido:</label>
         <textarea name="contenido" id="contenido"><?php echo htmlspecialchars($contenido); ?></textarea><br>
+
+        <label for="imagen">Selecciona una imagen:</label>
+        <input type="file" name="imagen" id="imagen" accept="image/*"><br><br>
 
         <button type="submit">Crear Artículo</button>
         <button type="button" onclick="location.href='../../index.php'">Atrás</button>
@@ -52,18 +54,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <?php
     // Mostrar errores si existen
-    if (!empty($errores) && is_array($errores)) {
+    if (!empty($errores)) {
         echo '<div class="error">';
         foreach ($errores as $error) {
-            echo ($error) . '<br>';
+            echo htmlspecialchars($error) . '<br>';
         }
         echo '</div>';
     }
+    // Mostrar mensaje de éxito si existe
     if (!empty($correcto)) {
-        echo '<div class="correcto">' . $correcto . '</div>';
+        echo '<div class="correcto">' . htmlspecialchars($correcto) . '</div>';
     }
-
-
     ?>
 </body>
 
