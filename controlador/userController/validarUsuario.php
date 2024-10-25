@@ -37,9 +37,11 @@ function validarDatosNewUser($nombre_usuario, $email, $password, $confirm_passwo
     // Si hay errores, se acumulan en el array $errores
     if ($userDuplicado !== false) {
         $errores = array_merge($errores, $userDuplicado);
+        return $errores;
     }
     if ($correoDuplicado !== false) {
         $errores = array_merge($errores, $correoDuplicado);
+        return $errores;
     }
     //Al contrario que con los if anteriores: Si comprobarContraseña no devuelve true es que hay errores
     if ($passCorrecto !== true) {
