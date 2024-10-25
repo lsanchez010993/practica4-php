@@ -2,6 +2,7 @@
 function contarArticulos($usuario_id = null)
 {
     try {
+       
         $pdo = connectarBD();
 
      

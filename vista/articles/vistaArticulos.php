@@ -10,6 +10,7 @@ const ARTICULOS_POR_PAGINA = 5; //Esta opcion se le podria preguntar al usuario.
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu principal</title>
 </head>
+
 <body>
     <div class="contenidor">
         <br>
@@ -21,17 +22,35 @@ const ARTICULOS_POR_PAGINA = 5; //Esta opcion se le podria preguntar al usuario.
         <section class="articles">
             <ul>
                 <?php
-               //Si el usuario ha iniciado sesion... verificarSesion() controla el tiempo que estara abierta la sesion
+                //Si el usuario ha iniciado sesion... verificarSesion() controla el tiempo que estara abierta la sesion
                 if (isset($_SESSION['nombre_usuario'])) {
 
                     $nombre_usuario = $_SESSION['nombre_usuario'];
-                    require_once __DIR__ . '../../../controlador/userController/verificarSesion.php';                 
+                    require_once __DIR__ . '../../../controlador/userController/verificarSesion.php';
                     verificarSesion();
-                } 
-           
-                // Establecer la página actual
+                }
 
+                // Establecer la página actual
+               
+                require_once __DIR__ . '../../../modelo/conexion.php';
+                require_once 'modelo/articulo/contarArticulos.php';
+                // Número total de artículos (puedes obtener esto de tu base de datos)
+                $totalArticulos = contarArticulos(); // Asume que obtienes el total de artículos desde la base de datos
+
+                // Calcula el número total de páginas
+                $totalPaginas = ceil($totalArticulos / ARTICULOS_POR_PAGINA);
+
+                // Obtiene el número de página de la URL. Si no existe, por defecto es 1
                 $pagina = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+
+                // Si la página solicitada es menor que 1 o mayor que el total de páginas
+                if ($pagina < 1 || $pagina > $totalPaginas) {
+                    // Redirige a la primera página
+                    $pagina = 1;
+                }
+
+                // Código para cargar los artículos de la página $pagina
+
 
                 // Definir el número de artículos por página
 
@@ -49,7 +68,7 @@ const ARTICULOS_POR_PAGINA = 5; //Esta opcion se le podria preguntar al usuario.
                     // Mostrar los artículos del usuario
                     require_once 'vista/articles/Mostrar.php';
                     listarArticulos($articles, 'editar');
-                     //Listo todos los articulos:
+                    //Listo todos los articulos:
                 } else {
                     $articles = limit_articulos_por_pagina($start, ARTICULOS_POR_PAGINA);
                     // Mostrar todos los artículos

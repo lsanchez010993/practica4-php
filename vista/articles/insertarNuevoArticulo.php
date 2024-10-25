@@ -18,6 +18,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $titulo = $_POST['titulo'];
     $contenido = $_POST['contenido'];
 }
+//Si es correcto borra el titulo y el contenido de las variables
+if (!empty($correcto)) {
+    $titulo = '';
+    $contenido = '';
+}
 ?>
 
 <!DOCTYPE html>
