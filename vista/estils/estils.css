@@ -8,6 +8,19 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+
+    background-image: url('../imagenes/fondosPantalla/reno.jpg');
+    background-size: cover;
+    /* Ajusta el tamaño de la imagen para cubrir toda el área */
+    background-position: center;
+    /* Centra la imagen */
+    background-repeat: no-repeat;
+    /* Evita que la imagen se repita */
+    font-family: 'Open Sans Condensed', sans-serif;
+    padding-top: 50px;
+    /* Esto crea espacio para .inicio */
+
+
 }
 
 /* Form Container */
@@ -41,7 +54,8 @@ form textarea {
 }
 
 form textarea {
-    resize: vertical; /* Allow the user to resize the textarea vertically */
+    resize: vertical;
+    /* Allow the user to resize the textarea vertically */
 }
 
 /* Form Buttons */
@@ -96,14 +110,16 @@ p[style*="color: red"] {
 button {
     display: inline-block;
     margin-top: 10px;
-    align-items:end;
+    align-items: end;
 }
 
 /* Contenedor para los botones dentro del formulario */
 .form-buttons {
     display: flex;
-    justify-content: space-between; /* Para distribuir los botones */
-    margin-top: 15px; /* Espacio superior entre el formulario y los botones */
+    justify-content: space-between;
+    /* Para distribuir los botones */
+    margin-top: 15px;
+    /* Espacio superior entre el formulario y los botones */
 }
 
 /* Botones individuales */
